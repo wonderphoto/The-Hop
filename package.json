@@ -10,16 +10,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/donjewey/round-event.git"
+    "url": "git+https://github.com/wonderphoto/round-event.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/donjewey/round-event/issues"
+    "url": "https://github.com/wonderphoto/round-event/issues"
   },
-  "homepage": "https://github.com/donjewey/round-event#readme",
+  "homepage": "https://github.com/wonderphoto/round-event#readme",
   "dependencies": {
+    "@mui/icons-material": "^5.5.1",
+    "@mui/material": "^5.5.3",
+    "@mui/styled-engine-sc": "^5.5.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
     "cookie-parser": "^1.4.6",
@@ -34,6 +37,8 @@
     "mini-css-extract-plugin": "^2.6.0",
     "mongoose": "^6.2.7",
     "pg": "^8.7.3",
+    "pg-format": "^1.0.4",
+    "pg-promise": "^10.11.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.2.2",
@@ -49,9 +54,11 @@
     "@babel/preset-react": "^7.16.7",
     "autoprefixer": "^10.4.4",
     "babel-loader": "^8.2.3",
+    "babel-regenerator-runtime": "^6.5.0",
     "concurrently": "^7.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
+    "flowbite": "^1.4.1",
     "nodemon": "^2.0.15",
     "postcss": "^8.4.12",
     "sass": "^1.49.9",
