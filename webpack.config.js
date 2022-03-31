@@ -1,7 +1,7 @@
 const path = require("path");
 const HTMLWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const Dotenv = require('dotenv-webpack');
+const Dotenv = require("dotenv-webpack");
 
 // on solving react router can't refresh error /can't get url other than home
 // https://stackoverflow.com/questions/43209666/react-router-v4-cannot-get-url
@@ -34,10 +34,28 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         exclude: "/node_modules/",
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          {
+            loader: "postcss-loader",
+          },
+          {
+            loader: "sass-loader",
+          },
+        ],
       },
       {
-        test: /\.(jpg|png|jpeg)$/,
+        // Extract any CSS content and minimize
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          { loader: "css-loader", options: { importLoaders: 1 } },
+          { loader: "postcss-loader" },
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
         use: [
           {
             loader: "file-loader",
@@ -65,7 +83,7 @@ module.exports = {
   plugins: [
     new HTMLWebPackPlugin({ template: "./public/index.html" }),
     new MiniCssExtractPlugin(),
-    new Dotenv()
+    new Dotenv(),
   ],
 
   devServer: {
