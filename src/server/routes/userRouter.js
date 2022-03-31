@@ -11,13 +11,14 @@ router.get("/all", userController.getAllUsers, (req, res, next) => {
 });
 // get one user
 // either with /:id or specified in req.body
+router.get("/:id", userController.getUser, (req, res, next) => {
+  return res.status(200).json(res.locals.getUser);
+});
+
 router.get("/", userController.getUser, (req, res, next) => {
   return res.status(200).json(res.locals.getUser);
 });
 
-router.get("/:id", userController.getUser, (req, res, next) => {
-  return res.status(200).json(res.locals.getUser);
-});
 
 // create new user
 router.post(
@@ -29,12 +30,14 @@ router.post(
   }
 );
 
-// // update existing user
-// // either with /:id or specified in req.body
-// router.put();
+// update existing user
+// username is required in the fetch url
+router.put('/:id', userController.getUser, userController.updateUser, (req,res,next)=>{
+    return res.sendStatus(200);
+});
 
-// // delete a user
-// // either with /:id or specified in req.body
+// delete a user
+// either with /:id or specified in req.body
 router.delete("/", userController.deleteUser, (req, res, next) => {
   return res.sendStatus(200);
 });
