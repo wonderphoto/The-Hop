@@ -16,7 +16,7 @@ userController.getUser = async (req, res, next) => {
     const sqlQuery = `
           SELECT username, email, home_location FROM users 
           WHERE username = $1
-              `;
+          `;
 
     const params = [username];
 
@@ -33,11 +33,8 @@ userController.getUser = async (req, res, next) => {
 };
 
 userController.getAllUsers = async (req, res, next) => {
-  try {
-    const sqlQuery = `
-            SELECT username, email, home_location FROM users 
-                `;
-                
+    try {
+    const sqlQuery = `SELECT username, email, home_location FROM users`;
     const data = await db.query(sqlQuery);
 
     res.locals.getAllUsers = data.rows;
@@ -77,7 +74,6 @@ userController.createUser = async (req, res, next) => {
     let salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
     let hash = bcrypt.hashSync(password, salt);
 
-    console.log("hashed password is:", hash);
     const params = !email ? [username, hash] : [username, hash, email];
 
     const data = await db.query(sqlQuery, params);
@@ -93,7 +89,7 @@ userController.createUser = async (req, res, next) => {
 // if no id exists in the fetch url (/:id), then use req.body
 userController.deleteUser = async (req, res, next) => {
   try {
-    const username  = req.params.id ? req.params.id : req.body.username;
+    const username = req.params.id ? req.params.id : req.body.username;
     const sqlQuery = `
             DELETE 
             FROM users
@@ -103,7 +99,7 @@ userController.deleteUser = async (req, res, next) => {
     const params = [username];
     const deletedUser = await db.query(sqlQuery, params);
 
-    console.log("deleted user is: ", username);
+    console.log("deleted user:  ", username);
     return next();
   } catch (err) {
     return next({

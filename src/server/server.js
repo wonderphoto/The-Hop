@@ -11,7 +11,7 @@ const session = require("express-session");
 
 // routers
 const userRouter = require("./routes/userRouter.js");
-const sessionRouter = require("./routes/userRouter.js");
+const sessionRouter = require("./routes/sessionRouter.js");
 
 // express
 const PORT = process.env.PORT || 3000;

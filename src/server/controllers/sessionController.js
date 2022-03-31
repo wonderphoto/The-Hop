@@ -1,41 +1,68 @@
 const db = require("../models/dataModels");
 const bcrypt = require("bcrypt");
 
-const sessionController = {}
+const sessionController = {};
 
 sessionController.verifyUser = async (req, res, next) => {
-    try {
-      const { username, password } = req.body;
-  
-      const sqlQuery = `
+  if (!res.locals.getUser) {
+    return next({
+      log: "Invalid username",
+      status: 402,
+      message: { err: "Invalid username" },
+    });
+  }
+
+  try {
+    const { username, password } = req.body;
+
+    if (!username || !password) return next("Both fields required to login");
+
+    const sqlQuery = `
             SELECT password
             FROM users
             WHERE username = $1
             ;`;
-  
-      const params = [username];
-  
-      const retrievedPassword = await db.query(sqlQuery, params);
-  
-      console.log("database hash is: ", retrievedPassword.rows[0].password);
-  
-      let verification = bcrypt.compareSync(
-        password,
-        retrievedPassword.rows[0].password
-      );
-      console.log("result of verification is: ", verification);
-      res.locals.verifyUser = verification;
-  
+
+    let retrievedPassword;
+    await db.query(sqlQuery, [username]).then((data) => {
+      retrievedPassword = data.rows[0].password;
+    });
+
+    let verification = bcrypt.compareSync(
+      password,
+      retrievedPassword
+    );
+
+    if (verification) {
       req.session.authenticated = true;
-      req.session.user = res.locals.user;
-  
-      console.log("verifyUser complete, result is: ", res.locals.verifyUser);
+      req.session.user = res.locals.getUser;
+      console.log(username + " logged in");
+      console.log(req.session);
       return next();
-    } catch (err) {
+    } else
       return next({
-        log: `Error in userController.verifyUser : ${err}`,
-        message: { err: "Error occurred in userController.verifyUser" },
+        log: "Invalid password",
+        status: 402,
+        message: { err: "Invalid password" },
       });
-    }
-  };
-  
+  } catch (err) {
+    return next({
+      log: `Error in userController.verifyUser : ${err}`,
+      message: { err: "Error occurred in userController.verifyUser" },
+    });
+  }
+};
+
+sessionController.logout = async (req, res, next) => {
+  const username = req.session.user.username;
+  console.log(req.session);
+  req.session.authenticated = false;
+  req.session.destroy(() => {
+    res.clearCookie("userID", { path: "/" });
+    res.clearCookie("connect.sid", { path: "/" });
+    console.log(username + " logged out.");
+    return next();
+  });
+};
+
+module.exports = sessionController;
