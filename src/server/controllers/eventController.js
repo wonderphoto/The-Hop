@@ -10,6 +10,7 @@ eventController.getSavedEvents = async (req, res, next) => {
     // const userid = req.session.user.username;
     const { userid } = req.body;
 
+    
     // get data from user_events table and join with events table
     const sqlQuery = `
           SELECT *
