@@ -23,8 +23,7 @@ router.post(
   }
 );
 
-router.post(
-  "/signup",
+router.post("/signup",
   userController.getUser,
   userController.createUser,
   userController.getUser,
