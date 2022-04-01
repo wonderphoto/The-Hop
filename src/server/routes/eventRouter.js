@@ -18,14 +18,14 @@ router.get('/',
 router.post('/',
     eventController.saveEvent,
     (req, res, next) => {
-        return res.status(200).json('event is saved for this user');
+        return res.status(200).json(res.locals.savedEvent);
     });
 
 // // delete an event from user's save list
 router.delete('/',
     eventController.deleteEvent,
     (req, res, next) => {
-        return res.status(200).json('event deleted successfully');
+        return res.status(200).json(`deleted event ${req.body.eventid} from user ${req.session.user.username}`);
     });
 
 module.exports = router;
