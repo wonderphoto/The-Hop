@@ -28,10 +28,7 @@ sessionController.verifyUser = async (req, res, next) => {
       retrievedPassword = data.rows[0].password;
     });
 
-    let verification = bcrypt.compareSync(
-      password,
-      retrievedPassword
-    );
+    let verification = bcrypt.compareSync(password, retrievedPassword);
 
     if (verification) {
       req.session.authenticated = true;
@@ -54,8 +51,9 @@ sessionController.verifyUser = async (req, res, next) => {
 };
 
 sessionController.logout = async (req, res, next) => {
+  if (!req.session.user)
+    return next({ log: "Not logged in", message: "Not logged in" });
   const username = req.session.user.username;
-  console.log(req.session);
   req.session.authenticated = false;
   req.session.destroy(() => {
     res.clearCookie("userID", { path: "/" });
