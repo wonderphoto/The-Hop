@@ -11,13 +11,14 @@ const session = require("express-session");
 
 // routers
 const userRouter = require("./routes/userRouter.js");
+const eventRouter = require("./routes/eventRouter.js");
 const sessionRouter = require("./routes/sessionRouter.js");
 
 // express
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-const SQL_URI=`postgres://${process.env.POSTGRESQL_USER}:${process.env.POSTGRESQL_PASSWORD}@heffalump.db.elephantsql.com/${process.env.POSTGRESQL_USER}`
+const SQL_URI = `postgres://${process.env.POSTGRESQL_USER}:${process.env.POSTGRESQL_PASSWORD}@heffalump.db.elephantsql.com/${process.env.POSTGRESQL_USER}`
 
 
 // handle requests for static files
@@ -51,6 +52,7 @@ app.use(
 
 // define route handlers
 app.use('/api/users', userRouter);
+app.use('/api/events', eventRouter);
 app.use('/auth', sessionRouter);
 
 // home
