@@ -14,7 +14,7 @@ userController.getUser = async (req, res, next) => {
     }
 
     const sqlQuery = `
-          SELECT username, email, home_location FROM users 
+          SELECT userid, username, email, home_location FROM users 
           WHERE username = $1
           `;
 
@@ -65,10 +65,12 @@ userController.createUser = async (req, res, next) => {
       ? `
         INSERT INTO users (username, password)
         VALUES ($1, $2) ON CONFLICT DO NOTHING
+        RETURNING userid, username, email, home_location
             `
       : `
         INSERT INTO users (username, password, email)
         VALUES ($1, $2, $3) ON CONFLICT DO NOTHING
+        RETURNING userid, username, email, home_location
             `;
 
     let salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
@@ -77,6 +79,7 @@ userController.createUser = async (req, res, next) => {
     const params = !email ? [username, hash] : [username, hash, email];
 
     const data = await db.query(sqlQuery, params);
+    res.locals.createUser = data.rows[0];
     return next();
   } catch (err) {
     return next({
@@ -104,23 +107,20 @@ userController.updateUser = async (req, res, next) => {
       dbPassword = data.rows[0].password;
     });
 
-    const password = req.body.password ? req.body.password: null;
+    const password = req.body.password ? req.body.password : null;
     const newPassword = req.body.newPassword ? req.body.newPassword : null;
     const email = req.body.email ? req.body.email : null;
-    const newUsername = req.body.newUsername ? req.body.newUsername: null;
+    const newUsername = req.body.newUsername ? req.body.newUsername : null;
     const username = req.params.id;
 
     if (password && newPassword) {
-      let verification = bcrypt.compareSync(
-        password,
-        dbPassword
-      );
+      let verification = bcrypt.compareSync(password, dbPassword);
 
-      if(!verification) return next("Invalid old password");
-      
+      if (!verification) return next("Invalid old password");
+
       const salt = bcrypt.genSaltSync(SALT_WORK_FACTOR);
       const hash = bcrypt.hashSync(newPassword, salt);
-      const params = [username, newPassword];
+      const params = [username, hash];
       let updateQuery = `
         UPDATE users
         SET password = $2
@@ -173,13 +173,22 @@ userController.deleteUser = async (req, res, next) => {
   try {
     const username = req.params.id ? req.params.id : req.body.username;
     const sqlQuery = `
-            DELETE 
+            DELETE
             FROM users
             WHERE username = $1
             ;`;
 
     const params = [username];
     const deletedUser = await db.query(sqlQuery, params);
+
+    if (deletedUser.rowCount < 1) {
+      return next({
+        message: "This user does not exist",
+        log: "This user does not exist",
+      });
+    }
+
+    console.log(deletedUser);
 
     console.log("deleted user:  ", username);
     return next();
