@@ -173,13 +173,22 @@ userController.deleteUser = async (req, res, next) => {
   try {
     const username = req.params.id ? req.params.id : req.body.username;
     const sqlQuery = `
-            DELETE 
+            DELETE
             FROM users
             WHERE username = $1
             ;`;
 
     const params = [username];
     const deletedUser = await db.query(sqlQuery, params);
+
+    if (deletedUser.rowCount < 1) {
+      return next({
+        message: "This user does not exist",
+        log: "This user does not exist",
+      });
+    }
+
+    console.log(deletedUser);
 
     console.log("deleted user:  ", username);
     return next();

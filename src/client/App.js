@@ -10,3 +10,5 @@ class App extends Component() {
     return <div>What's Hoppening?</div>;
   }
 }
+
+export default App;
