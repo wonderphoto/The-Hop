@@ -25,15 +25,16 @@ router.post(
   "/",
   userController.getUser,
   userController.createUser,
+  userController.getUser,
   (req, res, next) => {
-    return res.sendStatus(200);
+    return res.status(200).json(res.locals.createUser);
   }
 );
 
 // update existing user
 // username is required in the fetch url
 router.put('/:id', userController.getUser, userController.updateUser, (req,res,next)=>{
-    return res.sendStatus(200);
+    return res.status(200).json(res.locals.newUser);
 });
 
 // delete a user
