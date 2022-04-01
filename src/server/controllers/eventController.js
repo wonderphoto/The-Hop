@@ -38,23 +38,23 @@ eventController.saveEvent = async (req, res, next) => {
     // check if the eventid is in the events table 
     // if it's not we need to save to the events table
     const sqlQuery1 = `
-        INSERT INTO events (eventid, title, category, labels, description,
-    predicted_attendance, latitude, longitude, start_time,
-    private, rank, local_rank)
+      INSERT INTO events (eventid, title, category, labels, description,
+      predicted_attendance, latitude, longitude, start_time,
+      private, rank, local_rank)
       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
       WHERE $1 NOT IN (SELECT eventid FROM events)
     `;
     
     // if it exists, we just save to user_events table
     const sqlQuery2 = `
-          INSERT INTO user_events
-          (userid, eventid)
-          VALUES ($1, $2)
-          ;`;
+      INSERT INTO user_events
+      (userid, eventid)
+      VALUES ($1, $2)
+      ;`;
 
     const params1 = [eventid, title, category, labels, description,
-        predicted_attendance, latitude, longitude, start_time,
-        private, rank, local_rank];
+      predicted_attendance, latitude, longitude, start_time,
+      private, rank, local_rank];
 
     const params2 = [userid, eventid];
         
