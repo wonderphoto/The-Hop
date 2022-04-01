@@ -8,18 +8,24 @@ const router = express.Router();
 // router.get('');
 
 // get all user saved events
-// router.get('/', (req, res, next)=>{
-//     return res.status(200).json();
-// });
+router.get('/',
+    eventController.getSavedEvents,
+    (req, res, next) => {
+        return res.status(200).json(res.locals.savedEvents);
+    });
 
-// // save a new event to user
-// router.post('/', (req, res, next)=>{
-//     return res.status(200).json();
-// });
+// save a new event to events
+router.post('/',
+    eventController.saveEvent,
+    (req, res, next) => {
+        return res.status(200).json('event is saved for this user');
+    });
 
 // // delete an event from user's save list
-// router.delete('/', (req, res, next)=>{
-//     return res.status(200).json();
-// });
+router.delete('/',
+    eventController.deleteEvent,
+    (req, res, next) => {
+        return res.status(200).json('event deleted successfully');
+    });
 
 module.exports = router;
