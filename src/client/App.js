@@ -1,13 +1,19 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Home } from './components/Home';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-  }
+function App() {
   
-  render() {
-    return <div>What's Hoppening?</div>;
-  }
+  return (
+      <Home />
+
+  // <BrowserRouter>
+  // <Routes>
+  //     <Route path="/" element={<Home />}></Route>
+  //     <Route path="/profile" element={<ProfilePage />}></Route>
+  // </Routes>
+  // </BrowserRouter>
+  )
 }
 
 export default App;
