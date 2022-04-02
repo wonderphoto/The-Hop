@@ -10,6 +10,7 @@ export const HomePage = () => {
       <Header />
       <div className="flex">
         <Sidebar />
+        {/* <ProfileCard />  */}
         <Map />
       </div>
       <Footer />
