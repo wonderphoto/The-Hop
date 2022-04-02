@@ -3,6 +3,8 @@ import { Header } from "./Header";
 import { Sidebar } from "./homepage/Sidebar";
 import { Map } from "./homepage/Map";
 import { Footer } from "./Footer";
+import { useState, useEffect } from "react";
+
 
 export const HomePage = ({user}) => {
   const [apiEvents, setApiEvents] = useState({});
