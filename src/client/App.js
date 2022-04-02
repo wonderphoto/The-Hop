@@ -7,13 +7,15 @@ import { ProfilePage } from './components/ProfilePage';
 
 
 function App() {
+  const [user, setUser] = useState({});
+
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/signup" element={<SignupPage />}></Route>
+        <Route path="/login" element={<LoginPage setUser={setUser}/>}></Route>
+        <Route path="/signup" element={<SignupPage setUser={setUser}/>}></Route>
         <Route path="/profile" element={<ProfilePage />}></Route>
       </Routes>
     </BrowserRouter>

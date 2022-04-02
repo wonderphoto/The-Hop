@@ -18,7 +18,7 @@ export const SignupPage = () => {
         }).then(async (response) => {
             if (response.status === 200) {
                 const user = await response.json();
-                // setUser(user);
+                setUser(user);
                 navigate("/");
             } else {
                 alert("Error during sign up process")
