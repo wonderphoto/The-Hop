@@ -1,7 +1,7 @@
 import React from 'react'
 import { ProfileCard } from './profilepage/ProfileCard'
-import { ProfileHeader } from './profilepage/HomeHeader'
-import { SavedEventsCard } from './profilepage/Sidebar'
+import { Header } from '../components/Header'
+import { SavedEventsCard } from './profilepage/SavedEventsCard'
 import { ScheduleCard } from './profilepage/ScheduleCard'
 
 

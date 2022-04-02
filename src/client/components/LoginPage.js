@@ -17,7 +17,7 @@ export const LoginPage = () => {
         }).then(response => response.json())
             .then(user => {
                 if (user.username === username) {
-                    // setUser(user);
+                    setUser(user);
                     navigate("/");
                 }
                 else {
