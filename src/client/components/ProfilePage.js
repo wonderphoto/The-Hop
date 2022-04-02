@@ -1,21 +1,22 @@
 import React from 'react'
+import { Header } from './Header'
 import { ProfileCard } from './profilepage/ProfileCard'
-import { Header } from '../components/Header'
 import { SavedEventsCard } from './profilepage/SavedEventsCard'
 import { ScheduleCard } from './profilepage/ScheduleCard'
 
 
 export const ProfilePage = () => {
-    return (
-      <div className='flex-col'>
-        <ProfileHeader />
-        <div className="flex">
-          <ProfileCard /> 
-          <SavedEventsCard />
+  return (
+    <div className='flex-col'>
+      <Header />
+        <div className="flex-direction: row">
+          <ProfileCard />
           <ScheduleCard />
+          <SavedEventsCard />
         </div>
-        <Footer />
-      </div>
-    )
-  }
-  
+      <Footer />
+    </div>
+  )
+}
+
+
