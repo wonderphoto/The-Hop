@@ -1,8 +1,8 @@
 import React from 'react'
-import { Header } from './HomeHeader'
-import { Sidebar } from './Sidebar'
-import { Map } from './Map'
-import { Footer } from './Footer';
+import { Header } from './homepage/HomeHeader'
+import { Sidebar } from './homepage/Sidebar'
+import { Map } from './homepage/Map'
+import { Footer } from './homepage/Footer';
 
 export const HomePage = () => {
   return (
