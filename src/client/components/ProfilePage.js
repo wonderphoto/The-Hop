@@ -1,6 +1,6 @@
 import React from 'react'
-import { ProfileCard } from './profilepage/ProfileCard'
 import { Header } from './Header'
+import { ProfileCard } from './profilepage/ProfileCard'
 import { SavedEventsCard } from './profilepage/SavedEventsCard'
 import { ScheduleCard } from './profilepage/ScheduleCard'
 import { Footer } from './Footer'
@@ -8,18 +8,16 @@ import { Footer } from './Footer'
 
 export const ProfilePage = () => {
   return (
-    <div className='flex-col s12'>
+    <div className='flex-col'>
       <Header />
-        <div className="flex s5">
+        <div className="flex-direction: row">
           <ProfileCard />
-        </div>
-        <div className="flex s5">
-          <SavedEventsCard />
-        </div>
-        <div className="flex s7">
           <ScheduleCard />
+          <SavedEventsCard />
         </div>
       <Footer />
     </div>
   )
 }
+
+
