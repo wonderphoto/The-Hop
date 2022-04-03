@@ -14,7 +14,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     for (const c of checked) {
       arr.push(c.value);
     }
-    return arr.join(', ');
+    return arr.length ? arr.join(', ') : '';
   }
 
   const onFind = async () => {
@@ -45,11 +45,13 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
 
     // params for calling predictHQ api
     const eventParams = {
-      category: getCheckedCategories(),
       "active.gte": startDate,
       "active.lte": endDate,
       within: radius + "mi@" + latitude + "," + longitude,
     };
+    // add category key if categorie(s) is checked by user
+    const categories = getCheckedCategories();
+    if (categories !== '') eventParams['category'] = categories;
 
     let url = new URL("https://api.predicthq.com/v1/events");
     url.search = new URLSearchParams(eventParams).toString();
@@ -66,16 +68,17 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
       },
     };
 
+    // make a get request to predictHQ and save the data in the apiEvents state
     const events = await fetch(url, eventAPIParams)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        return data;
+        console.log('returned data is:', data.results);
+        setApiEvents(data.results);
       })
       .catch((err) => {
         console.log(err);
       });
-    console.log("returned events is: ", events);
+    // console.log("returned events is: ", events);
     // if (Object.keys(events).length > 0) setApiEvents(events);
   };
 
@@ -84,11 +87,11 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
       id="SearchBox"
       className="flex bg-slate-50 flex-col border-2 border-gray-300 justify-center items-center w-full "
     >
-      <div className="flex mt-3 mb-1">
+      <div className="flex mt-4 mb-3">
         <div className="text-md font-semibold text-gray-500 mt-2 mr-1">Location: </div>
         <AutoComplete id="locationForm"
           className="
-         w-80
+         w-72
          px-3
          py-1.5
          text-base
@@ -96,7 +99,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
          text-gray-600
          placeholder-gray-400
          bg-white bg-clip-padding
-         border border-solid border-gray-400
+         border-2 border-solid border-gray-400
          rounded
          transition
          ease-in-out
@@ -111,7 +114,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
           onPlaceSelected={(place) => console.log('returned autocompleted place is: ', place)}
         />
       </div>
-      <div className="flex space-x-2 mb-2">
+      <div className="flex space-x-2 mb-3">
         <div>
           <button className="inline-block px-4 py-1.5 border-2 border-blue-400 text-blue-400 font-semibold text-sm leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             More Options
