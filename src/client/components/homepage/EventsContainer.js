@@ -2,6 +2,6 @@ import React from 'react'
 
 export const EventsContainer = () => {
     return (
-        <div>EventsContainer</div>
+        <div className="">Event Container</div>
     )
 }
