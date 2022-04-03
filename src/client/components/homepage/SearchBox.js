@@ -1,9 +1,6 @@
 import React from "react";
 import regeneratorRuntime from "regenerator-runtime";
-// import PlacesAutocomplete, {
-//   geocodeByAddress,
-//   getLatLng,
-// } from "react-places-autocomplete";
+import AutoComplete from "react-google-autocomplete";
 
 export const SearchBox = ({ apiEvents, setApiEvents }) => {
   const apiKey = process.env.PREDICTHQ_API_KEY;
@@ -89,28 +86,29 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     >
       <div className="flex mt-3 mb-1">
         <div className="text-md font-semibold text-gray-500 mt-2 mr-1">Location: </div>
-        <input
-          type="text"
+        <AutoComplete id="locationForm"
           className="
-form-control
-w-80
-px-3
-py-1.5
-text-base
-font-normal
-text-gray-600
-placeholder-gray-300
-bg-white bg-clip-padding
-border border-solid border-gray-300
-rounded
-transition
-ease-in-out
-m-0
-focus:text-gray-700 focus:bg-white focus:border-blue-500 focus:outline-none
-"
-          id="locationForm"
-          placeholder="E.g. San Francisco, CA"
-          onChange={(e) => { }}
+         w-80
+         px-3
+         py-1.5
+         text-base
+         font-normal
+         text-gray-600
+         placeholder-gray-400
+         bg-white bg-clip-padding
+         border border-solid border-gray-400
+         rounded
+         transition
+         ease-in-out
+         m-0
+         focus:text-gray-700 focus:bg-white focus:border-blue-500 focus:outline-none
+         "
+          apiKey={process.env.GOOGLE_MAPS}
+          options={{
+            types: ["geocode"],
+            componentRestrictions: { country: "us" },
+          }}
+          onPlaceSelected={(place) => console.log('returned autocompleted place is: ', place)}
         />
       </div>
       <div className="flex space-x-2 mb-2">
