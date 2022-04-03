@@ -90,7 +90,7 @@ eventController.saveEvent = async (req, res, next) => {
     console.log("event is saved to events table");
 
     const checkQuery = `
-      SELECT * FROM user_events 
+      SELECT * FROM user_events
       WHERE userid = $1 AND eventid = $2
     `;
     const params2 = [userid, eventid];

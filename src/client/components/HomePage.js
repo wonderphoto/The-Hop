@@ -18,7 +18,7 @@ export const HomePage = ({ user }) => {
     <div className="flex-col">
       <Header />
       <div className="flex relative">
-        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} />
+        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} />
         <Map />
       </div>
       <Footer />
