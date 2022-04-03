@@ -46,6 +46,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     let startDate = document.getElementById("startDateForm").value;
     let endDate = document.getElementById("endDateForm").value;
 
+    // params for calling predictHQ api
     const eventParams = {
       category: getCheckedCategories(),
       "active.gte": startDate,
@@ -56,6 +57,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     let url = new URL("https://api.predicthq.com/v1/events");
     url.search = new URLSearchParams(eventParams).toString();
 
+    //headers for predictHQ get request
     const eventAPIParams = {
       method: "GET",
       headers: {
