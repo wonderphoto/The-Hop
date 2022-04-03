@@ -45,13 +45,14 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
 
     // params for calling predictHQ api
     const eventParams = {
+      category: getCheckedCategories(),
       "active.gte": startDate,
       "active.lte": endDate,
       within: radius + "mi@" + latitude + "," + longitude,
     };
     // add category key if categorie(s) is checked by user
-    const categories = getCheckedCategories();
-    if (categories !== '') eventParams['category'] = categories;
+    // const categories = getCheckedCategories();
+    // if (categories !== '') eventParams['category'] = categories;
 
     let url = new URL("https://api.predicthq.com/v1/events");
     url.search = new URLSearchParams(eventParams).toString();
@@ -229,6 +230,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="community"
                       id="flexCheckCommunity"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
@@ -243,6 +245,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="concerts"
                       id="flexCheckConcerts"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
@@ -271,6 +274,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="expos"
                       id="flexCheckExpos"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
@@ -286,6 +290,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="festivals"
                       id="flexCheckFestivals"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
@@ -300,6 +305,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="performing-arts"
                       id="flexCheckPerformingArts"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
@@ -314,6 +320,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="sports"
                       id="flexCheckSports"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"

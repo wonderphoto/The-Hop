@@ -7,7 +7,7 @@ export const EventsContainer = ({ apiEvents }) => {
         <div className="h-auto bg-gray-100 relative">
             {apiEvents.length > 0 ?
                 <div className="border-b py-0.5 mt-1 mb-2 flex justify-around">
-                    <p className='text-md font-medium'>No. of events: {numEvents}</p>
+                    <p className='text-md font-medium'>No. of events found: {numEvents}</p>
                 </div>
                 :
                 <div className="border-b py-0.5 mt-1 flex justify-around">

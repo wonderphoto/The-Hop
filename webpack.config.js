@@ -1,7 +1,6 @@
 const path = require("path");
 const HTMLWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 const Dotenv = require("dotenv-webpack");
 
 // on solving react router can't refresh error /can't get url other than home
@@ -85,7 +84,6 @@ module.exports = {
     new HTMLWebPackPlugin({ template: "./public/index.html" }),
     new MiniCssExtractPlugin(),
     new Dotenv(),
-    new NodePolyfillPlugin()
   ],
 
   devServer: {
