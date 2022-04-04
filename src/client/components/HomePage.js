@@ -6,18 +6,19 @@ import { Footer } from "./Footer";
 import { useState, useEffect } from "react";
 
 
-export const HomePage = ({user}) => {
-  const [apiEvents, setApiEvents] = useState({});
- 
-  useEffect(()=>{
-    // re-render page when the apiEvents object changes.
-  }, [Object.keys(apiEvents).length])
+export const HomePage = ({ user, setUser }) => {
+  const [apiEvents, setApiEvents] = useState([]);
+
+  useEffect(() => {
+    // re-render page when the apiEvents object or when user logs in or out changes.
+    console.log("useEffect in HomePage is fired, reloaded page due to change in apiEvents")
+  }, [apiEvents.length, JSON.stringify(user)])
 
   return (
     <div className="flex-col">
-      <Header />
-      <div className="flex">
-        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents}/>
+      <Header user={user} setUser={setUser} />
+      <div className="flex relative">
+        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} />
         <Map />
       </div>
       <Footer />
