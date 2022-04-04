@@ -10,7 +10,7 @@ export const ProfilePage = () => {
   return (
     <div className='flex flex-col h-screen'>
       <Header />
-        <div className="">
+        <div className="font-serif">
           <div className="inline-flex flex-col justify-items-start h-screen w-1/2">
             <ProfileCard />
           < SavedEventsCard />
