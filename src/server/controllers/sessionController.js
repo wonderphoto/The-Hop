@@ -53,6 +53,7 @@ sessionController.verifyUser = async (req, res, next) => {
 sessionController.logout = async (req, res, next) => {
   if (!req.session.user)
     return next({ log: "Not logged in", message: "Not logged in" });
+  console.log('user session is :', req.session.user);
   const username = req.session.user.username;
   req.session.authenticated = false;
   req.session.destroy(() => {
