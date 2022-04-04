@@ -9,7 +9,6 @@ import { ProfilePage } from './components/ProfilePage';
 function App() {
   const [user, setUser] = useState({});
 
-
   return (
     <BrowserRouter>
       <Routes>

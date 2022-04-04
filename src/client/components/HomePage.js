@@ -10,7 +10,7 @@ export const HomePage = ({ user, setUser }) => {
   const [apiEvents, setApiEvents] = useState([]);
 
   useEffect(() => {
-    // re-render page when the apiEvents object changes.
+    // re-render page when the apiEvents object or when user logs in or out changes.
     console.log("useEffect in HomePage is fired, reloaded page due to change in apiEvents")
   }, [apiEvents.length, JSON.stringify(user)])
 

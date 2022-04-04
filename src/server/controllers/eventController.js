@@ -34,10 +34,12 @@ eventController.getSavedEvents = async (req, res, next) => {
 // save an event to a specific user
 eventController.saveEvent = async (req, res, next) => {
   try {
-    const userid = "" + req.session.user.userid;
+    // const userid = "" + req.session.user.userid;
+    // the session user was not able to be retrieved so I used the userid from the app state instead
 
-    //TODO fix userid and pull it from session instead of req body
+    // retrieved userid from the app state, passed in in the request body
     const {
+      userid,
       eventid,
       title,
       category,
@@ -86,8 +88,6 @@ eventController.saveEvent = async (req, res, next) => {
     const savedEvent = await db.query(sqlQuery1, params1);
     res.locals.savedEvent =
       savedEvent.rows.length > 0 ? savedEvent.rows[0] : "Duplicate event";
-    console.log(savedEvent.rows);
-    console.log("event is saved to events table");
 
     const checkQuery = `
       SELECT * FROM user_events
@@ -97,7 +97,11 @@ eventController.saveEvent = async (req, res, next) => {
 
     const checkUserEvent = await db.query(checkQuery, params2);
     // console.log(checkUserEvent.rows);
-    if (checkUserEvent.rows.length > 0) return next();
+    if (checkUserEvent.rows.length > 0) {
+      res.locals.savedEvent = 'event has been saved';
+      console.log('event has been saved already')
+      return next();
+    }
 
     // if it exists, we just save to user_events table
     const sqlQuery2 =
@@ -109,7 +113,7 @@ eventController.saveEvent = async (req, res, next) => {
     ;`;
 
     const savedUserEvent = await db.query(sqlQuery2, params2);
-    console.log("event is saved to user_events table");
+    console.log("event is saved to events and user_events table");
 
     return next();
   } catch (err) {

@@ -27,13 +27,14 @@ export const EventCard = ({ event, cardId, user }) => {
     const rank = event.rank;
 
     const saveEvent = () => {
-        fetch('http://localhost:3000/api/users', {
+        fetch('http://localhost:3000/api/events', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 userid: user.userid, // in case we need to get userid from state instead of session
+                username: user.username,
                 eventid: eventid,
                 title: title,
                 category: category,
@@ -50,6 +51,9 @@ export const EventCard = ({ event, cardId, user }) => {
         }).then(response => response.json())
             .then(data => {
                 console.log('event saved: ', data);
+                if (data === 'event has been saved') {
+                    document.getElementById(`hiddenError${cardId}`).style.display = 'flex';
+                }
             })
             .catch(err => {
                 console.log(err);
@@ -142,14 +146,15 @@ export const EventCard = ({ event, cardId, user }) => {
                                 onClick={() => saveEvent()}>
                                 Save Event</button>
                         }
-
                     </div>
                     <div className="collapse" id={`descriptionCollapse${cardId}`}>
                         <div className="block p-6 rounded-lg shadow-lg bg-white">
                             {event.description}
                         </div>
                     </div>
-
+                    <div id={`hiddenError${cardId}`} className="hidden text-center">
+                        <p className='text-red-600 text-center text-sm mt-2'>Event has been saved already for user {user.username}</p>
+                    </div>
                 </div>
             </div>
         </div>

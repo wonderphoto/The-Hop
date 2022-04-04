@@ -11,7 +11,7 @@ export const Header = ({ user, setUser }) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      // body: JSON.stringify({ "username": username, "password": password }),
+      body: JSON.stringify({ "username": user.username, "userid": user.userid }),
     }).then(response => response.json())
       .then(user => {
         console.log("user has been successfully logged out and session destroyed")
