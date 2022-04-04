@@ -3,6 +3,7 @@ import React from 'react'
 
 
 export const EventCard = ({ event, cardId, user }) => {
+
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
         const date = new Date(datetime);
@@ -53,7 +54,6 @@ export const EventCard = ({ event, cardId, user }) => {
             .catch(err => {
                 console.log(err);
             })
-
     }
 
     return (
@@ -97,7 +97,7 @@ export const EventCard = ({ event, cardId, user }) => {
                         </p>
                         <p className="text-gray-700">{endTime}</p>
                     </div>
-                    {event.entities[0].name ?
+                    {event.entities[0] ?
                         <div className='w-full flex justify-between'>
                             <p className="text-gray-700 text-md">
                                 Venue
@@ -110,7 +110,7 @@ export const EventCard = ({ event, cardId, user }) => {
                         :
                         <></>
                     }
-                    {event.entities[0].formatted_address ?
+                    {event.entities[0] ?
                         <div className='w-full flex justify-between'>
                             <p className="text-gray-700 text-md">
                                 Address
@@ -133,13 +133,15 @@ export const EventCard = ({ event, cardId, user }) => {
                             </button>
                             :
                             <div></div>}
-                        {user ?
+                        {JSON.stringify(user) === JSON.stringify({}) ?
+                            <button type="button" className=" cursor-not-allowed opacity-50 mt-4 text-white inline-block px-6 py-2.5 bg-emerald-600 font-medium text-xs leading-tight uppercase rounded shadow-md">
+                                Save Event</button>
+                            :
                             <button type="button" className=" mt-4 inline-block px-6 py-2.5 bg-emerald-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-emerald-800 hover:shadow-lg focus:bg-emerald-800
                             focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emerald-800 active:shadow-lg transition duration-150 ease-in-out"
                                 onClick={() => saveEvent()}>
-                                Save Event</button> :
-                            <button type="button" className=" cursor-not-allowed opacity-50 mt-4 text-white inline-block px-6 py-2.5 bg-emerald-600 font-medium text-xs leading-tight uppercase rounded shadow-md">
-                                Save Event</button>}
+                                Save Event</button>
+                        }
 
                     </div>
                     <div className="collapse" id={`descriptionCollapse${cardId}`}>

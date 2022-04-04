@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-export const LoginPage = () => {
+export const LoginPage = ({ setUser }) => {
     let navigate = useNavigate();
 
     const verifyUser = () => {
@@ -16,6 +16,7 @@ export const LoginPage = () => {
             body: JSON.stringify({ "username": username, "password": password }),
         }).then(response => response.json())
             .then(user => {
+                console.log("returned user from login is: ", user)
                 if (user.username === username) {
                     setUser(user);
                     navigate("/");
@@ -64,11 +65,11 @@ export const LoginPage = () => {
                                 <button
                                     type="button"
                                     className="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-md leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    onClick={() => { verifyUser() }}
+                                    onClick={() => verifyUser()}
                                 >
                                     Login
                                 </button>
-                                <p className="text-md font-semibold mt-2 pt-1 mb-0">
+                                <p className="text-md font-semibold mt-3 pt-1 mb-0">
                                     Don't have an account?
                                     <button
                                         onClick={() => navigate('/signup')}
@@ -76,6 +77,10 @@ export const LoginPage = () => {
                                     > Register
                                     </button>
                                 </p>
+                                <button className="text-md font-semibold mt-2 pt-1 mb-0 text-emerald-600 hover:text-emerald-800 focus:text-emerald-800 transition duration-200 ease-in-out"
+                                    onClick={() => navigate('/')}>
+                                    Return to app
+                                </button>
                             </div>
                         </form>
                     </div>

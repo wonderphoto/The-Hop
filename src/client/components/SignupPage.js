@@ -35,7 +35,7 @@ export const SignupPage = () => {
                 <div className="flex xl:justify-center lg:justify-between justify-center items-center
             flex-wrap h-full g-6 bg-gray-50">
                     <div className="xl:w-3/12 lg:w-4/12 md:w-5/12">
-                        <form className='bg-gradient-to-r from-orange-100 via-gray-200 to-green-100  p-4 rounded-lg border-2 border-gray-200 shadow-lg'>
+                        <form className='bg-gradient-to-r from-orange-100 to-green-100  p-4 rounded-lg border-2 border-gray-200 shadow-lg'>
                             <div
                                 className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5"
                             >

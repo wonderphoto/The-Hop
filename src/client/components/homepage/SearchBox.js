@@ -117,7 +117,8 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
       </div>
       <div className="flex space-x-2 mb-3">
         <div>
-          <button className="inline-block px-4 py-1.5 border-2 border-blue-400 text-blue-400 font-semibold text-sm leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          <button className="inline-block px-4 py-1.5 border-2 border-blue-400 text-blue-400 font-semibold text-sm leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+            type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
             More Options
           </button>
           <button
