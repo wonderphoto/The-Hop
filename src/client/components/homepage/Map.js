@@ -14,8 +14,7 @@ const containerStyle = {
     height: '85vh'
 };
 
-export const Map = () => {
-    const [base, setBase] = useState(0);
+export const Map = ({ mapBase }) => {
 
     const center = useMemo(() => ({ lat: 37.768, lng: -122.42 }), []);
     const options = useMemo(() => ({
