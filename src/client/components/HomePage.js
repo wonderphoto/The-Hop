@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 
 export const HomePage = ({ user, setUser }) => {
   const [apiEvents, setApiEvents] = useState([]);
+  const [mapBase, setMapBase] = useState({});
 
   useEffect(() => {
     // re-render page when the apiEvents object or when user logs in or out changes.
@@ -18,8 +19,8 @@ export const HomePage = ({ user, setUser }) => {
     <div className="flex-col">
       <Header user={user} setUser={setUser} />
       <div className="flex relative">
-        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} />
-        <Map apiEvents={apiEvents} />
+        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} setMapBase={setMapBase} />
+        <Map apiEvents={apiEvents} mapBase={mapBase} />
       </div>
       <Footer />
     </div>

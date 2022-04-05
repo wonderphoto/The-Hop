@@ -2,7 +2,7 @@ import React from "react";
 import regeneratorRuntime from "regenerator-runtime";
 import AutoComplete from "react-google-autocomplete";
 
-export const SearchBox = ({ apiEvents, setApiEvents }) => {
+export const SearchBox = ({ apiEvents, setApiEvents, setMapBase }) => {
   const apiKey = process.env.PREDICTHQ_API_KEY;
   // today's date for filling in default value of date input boxes in options
   let todayDate = new Date().toISOString().slice(0, 10);

@@ -1,6 +1,13 @@
 import React, { Component, useMemo, useCallback, useRef, useState } from 'react';
 import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
 
+// todo
+// create state to center map
+// pan map to location when user searches
+// the state has to be accessible to both searchbox and map so homepage is likely a good place
+// learn how to create colored marker
+// learn how to create info window that is toggled on click of marker
+// pass info from each event into info window and marker
 
 const containerStyle = {
     width: '100%',
