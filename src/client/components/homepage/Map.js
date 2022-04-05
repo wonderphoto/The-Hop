@@ -25,10 +25,10 @@ export const Map = ({ mapBase }) => {
 
     const mapRef = useRef();
 
-    const { isLoaded } = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: process.env.GOOGLE_MAPS
-    })
+    // const { isLoaded } = useJsApiLoader({
+    //     id: 'google-map-script',
+    //     googleMapsApiKey: process.env.GOOGLE_MAPS
+    // })
 
     const [map, setMap] = React.useState(null)
 
@@ -38,7 +38,11 @@ export const Map = ({ mapBase }) => {
         setMap(null)
     }, [])
 
-    return isLoaded ? (
+    // return (
+    //     <></>
+    // )
+    // return isLoaded ? (
+    return (
         <GoogleMap
             mapContainerStyle={containerStyle}
             defaultCenter={center}
@@ -51,5 +55,6 @@ export const Map = ({ mapBase }) => {
             { /* Child components, such as markers, info windows, etc. */}
             <></>
         </GoogleMap>
-    ) : <div>Loading ....</div>
+    )
+    // : <div>loading...</div>
 }
