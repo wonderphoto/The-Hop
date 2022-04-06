@@ -21,7 +21,7 @@ export const Map = () => {
                 >
                 </GoogleMapReact> */}
             </div>
-            <div className='text-3xl text-blue-500 font-bold'>map</div>
+            <div className='text-xl text-blue-500 font-bold'>map</div>
         </div>
     );
 }
