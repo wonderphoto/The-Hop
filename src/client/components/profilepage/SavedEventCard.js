@@ -9,32 +9,38 @@ export const SavedEventCard = ({ event, cardId, user }) => {
         const date = new Date(datetime);
         return date.toLocaleString('en-US').slice(0, 21);
     }
-    const startTime = timeConverter(event.start);
+    const startTime = timeConverter(event.start_time);
     
     console.log(event.title);
 
     return (
-        <p>Event Title is {event.title}</p>
-    //     <div className="flex justify-center">
-    //         <div className="rounded-lg shadow-lg bg-white min-w-[23rem]">
-    //             {/* <a href="#!">
-    //                 <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
-    //             </a> */}
-    //             <div className="p-4">
-    //                 <h5 className="text-gray-900 text-xl font-semibold mb-2">{event.title}</h5>
-    //                 <div className='w-full flex justify-between'>
-    //                     <p className="text-gray-700 text-md">
-    //                         Category
-    //                     </p>
-    //                     <p className="text-gray-700">{event.category}</p>
-    //                 </div>
-    //                 <div className='w-full flex justify-between'>
-    //                     <p className="text-gray-700 text-md">
-    //                         Labels
-    //                     </p>
-    //                     <p className="text-gray-700">{event.labels.slice(0, 2).join(', ')}</p>
-    //                 </div>
-                   
+      
+        <div className='w-full flex justify-center'>
+            <p>{event.title}</p>
+                <div className="text-gray-700 text-md">
+                <p>Starts at {startTime}</p>
+            </div>
+        </div>
+        // <div className="flex justify-center">
+        //     <div className="rounded-lg shadow-lg bg-white min-w-[23rem]">
+        //         {/* <a href="#!">
+        //             <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
+        //         </a> */}
+                // <div className="p-4">
+                //     <h5 className="text-gray-900 text-xl font-semibold mb-2">{event.title}</h5>
+                //     <div className='w-full flex justify-between'>
+                //         <p className="text-gray-700 text-md">
+                //             Category
+                //         </p>
+                //         <p className="text-gray-700">{event.category}</p>
+                //     </div>
+                //     <div className='w-full flex justify-between'>
+                //         <p className="text-gray-700 text-md">
+                //             Labels
+                //         </p>
+                //         <p className="text-gray-700">{event.labels.slice(0, 2).join(', ')}</p>
+                //     </div>
+                    
     //                 <div className='w-full flex justify-between'>
     //                     <p className="text-gray-700 text-md">
     //                         Start Time
