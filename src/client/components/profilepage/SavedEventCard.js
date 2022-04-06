@@ -1,7 +1,8 @@
-import React from 'react'
+import React from 'react';
 
 
-export const EventCard = ({ event, cardId, user }) => {
+
+export const SavedEventCard = ({ event, cardId, user }) => {
 
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
@@ -24,40 +25,6 @@ export const EventCard = ({ event, cardId, user }) => {
     const privateVal = event.private;
     const local_rank = event.local_rank;
     const rank = event.rank;
-
-    const saveEvent = () => {
-        fetch('http://localhost:3000/api/events', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                userid: user.userid, // in case we need to get userid from state instead of session
-                username: user.username,
-                eventid: eventid,
-                title: title,
-                category: category,
-                labels: labels,
-                description: description,
-                predicted_attendance: predicted_attendance,
-                latitude: latitude,
-                longitude: longitude,
-                start_time: start_time,
-                private: privateVal,
-                rank: rank,
-                local_rank: local_rank
-            }),
-        }).then(response => response.json())
-            .then(data => {
-                console.log('event saved: ', data);
-                if (data === 'event has been saved') {
-                    document.getElementById(`hiddenError${cardId}`).style.display = 'flex';
-                }
-            })
-            .catch(err => {
-                console.log(err);
-            })
-    }
 
     return (
         <div className="flex justify-center">
