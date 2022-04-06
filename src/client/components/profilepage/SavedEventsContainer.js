@@ -1,31 +1,28 @@
 import React from 'react'
 import { SavedEventCard } from './SavedEventCard';
+import { useState } from 'react';
 
 //savedEventsContainer holds individual event cards that display all event information
 //rendering the event cards fetched from the database
 
-export const SavedEventsContainer = async ({ user }) => {
-    let events;
+export const SavedEventsContainer = ({ user }) => {
+    const [userEvents, setUserEvents] = useState({});
     //if we are logged in then we fetch from DB
-    let eventCards;
-    if (JSON.stringify(user) !== JSON.stringify({})) {
-        await fetch('http://localhost:3000/api/events', {
+    //const loadEvents = async () => {
+        fetch('http://localhost:3000/api/events', {
             headers: {
                 'Content-Type': 'application/json'
-            },
-            //}).then(response => response.json())
-        }).then(data => {
-            events = data;
-        })
+            }
+        }).then(response => response.json())
+            .then(data => {
+                setUserEvents(data);
+                console.log("userEvents = ", userEvents);
+            })
             .catch(err => {
                 console.log(err);
             })
-
-        eventCards = (JSON.stringify(user) !== JSON.stringify({})) ? events.map((event, index) => (
-            <SavedEventCard event={event} cardId={index} key={index} user={user}></SavedEventCard>
-        )) : null; 
-    }
-
+   // }
+    //loadEvents();
         return (
             <div className="inline-flex h-3/4 border-2 border-red-300 justify-center">
                 <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm text-center">
@@ -36,7 +33,10 @@ export const SavedEventsContainer = async ({ user }) => {
                     <p className="list-item text-gray-700 text-base mb-4">
                         
                     </p> */}
-                    { eventCards }
+                    
+                        {userEvents.length > 0 ? userEvents.map((event, index) => (
+                        <SavedEventCard event={event} cardId={index} key={index} user={user}></SavedEventCard> 
+                        )): <div></div> }
                 </div>
             </div>
         )

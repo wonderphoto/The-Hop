@@ -8,7 +8,7 @@ export const Header = ({ user, setUser }) => {
   const navLogin = () => {
     navigate("/login");
   }
-
+  console.log(`user is: `, user)
   const logout = () => {
     fetch('http://localhost:3000/auth/logout', {
       method: 'POST',
