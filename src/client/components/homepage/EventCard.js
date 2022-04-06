@@ -1,7 +1,6 @@
 import React from 'react'
 
 
-
 export const EventCard = ({ event, cardId, user }) => {
 
     // converts date string into a local date time format, removes the last 21 characters

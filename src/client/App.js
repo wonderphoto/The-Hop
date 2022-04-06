@@ -29,11 +29,8 @@ function App() {
           element={<HomePage user={user} setUser={setUser} />}
         ></Route>
         <Route path="/login" element={<LoginPage setUser={setUser} />}></Route>
-        <Route
-          path="/signup"
-          element={<SignupPage setUser={setUser} />}
-        ></Route>
-        <Route path="/profile" element={<ProfilePage />}></Route>
+        <Route path="/signup" element={<SignupPage setUser={setUser} />}></Route>
+        <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />}></Route>
       </Routes>
     </BrowserRouter>
   );
