@@ -21,6 +21,7 @@ export const SignupPage = () => {
                 // const user = await response.json();
                 // setUser(user);
                 navigate("/");
+                window.location.reload(false);
             } else {
                 alert("Error during sign up process")
             }
