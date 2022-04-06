@@ -11,14 +11,9 @@ const placeLib = ['places'];
 export const HomePage = ({ user, setUser }) => {
   const [apiEvents, setApiEvents] = useState([]);
   const [mapBase, setMapBase] = useState({});
-<<<<<<< HEAD
   const location = useLocation();
 
-||||||| constructed merge base
-
-=======
   const mapRef = useRef();
->>>>>>> added marker and auto pan to map
 
   // load GoogleMap API key here so we don't call it twice in the autocomplete and google map components
   const { isLoaded } = useJsApiLoader({
