@@ -19,18 +19,18 @@ function App() {
       }
     };
     sessionCheck();
-  }, []);
+  }, document.location.href);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={<HomePage user={user} setUser={setUser} />}
+          element={<HomePage user={user}/>}
         ></Route>
-        <Route path="/login" element={<LoginPage setUser={setUser} />}></Route>
-        <Route path="/signup" element={<SignupPage setUser={setUser} />}></Route>
-        <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />}></Route>
+        <Route path="/login" element={<LoginPage/>}></Route>
+        <Route path="/signup" element={<SignupPage/>}></Route>
+        <Route path="/profile" element={<ProfilePage user={user}/>}></Route>
       </Routes>
     </BrowserRouter>
   );
