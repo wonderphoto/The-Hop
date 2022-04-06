@@ -1,11 +1,14 @@
-import React, { Component, useMemo, useCallback, useRef, useState } from 'react';
-import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import React, { Component, useMemo, useCallback, useRef, useState, useEffect } from 'react';
+import { Circle, GoogleMap, Marker, MarkerClusterer, InfoWindow, useJsApiLoader } from '@react-google-maps/api';
 
 // todo
-// create state to center map
-// pan map to location when user searches
-// the state has to be accessible to both searchbox and map so homepage is likely a good place
-// learn how to create colored marker
+// create state to center map - Done - mapBase
+// pan map to location when user searches -Done - used useEffect in Map and panTo
+// the state has to be accessible to both searchbox and map so homepage is likely a good place - Done
+// learn how to create colored marker - DONE
+// need to add number to apiEvents,
+// render number on eventCard,
+// show number on bubble,
 // learn how to create info window that is toggled on click of marker
 // pass info from each event into info window and marker
 
@@ -14,7 +17,11 @@ const containerStyle = {
     height: '85vh'
 };
 
-export const Map = ({ mapBase }) => {
+export const Map = ({ apiEvents, mapBase, mapRef }) => {
+    useEffect(() => {
+        mapRef.current?.panTo(mapBase);
+
+    }, [JSON.stringify(mapBase)]);
 
     const center = useMemo(() => ({ lat: 37.768, lng: -122.42 }), []);
     const options = useMemo(() => ({
@@ -23,7 +30,7 @@ export const Map = ({ mapBase }) => {
         clickableIcons: false,
     }), []);
 
-    const mapRef = useRef();
+    // const mapRef = useRef();
 
     // const { isLoaded } = useJsApiLoader({
     //     id: 'google-map-script',
@@ -38,23 +45,65 @@ export const Map = ({ mapBase }) => {
         setMap(null)
     }, [])
 
-    // return (
-    //     <></>
-    // )
-    // return isLoaded ? (
-    return ( null
-        // <GoogleMap
-        //     mapContainerStyle={containerStyle}
-        //     defaultCenter={center}
-        //     center={center}
-        //     zoom={14}
-        //     options={options}
-        // // onLoad={onLoad}
-        // // onUnmount={onUnmount}
-        // >
-        //     { /* Child components, such as markers, info windows, etc. */}
-        //     <></>
-        // </GoogleMap>
+    return (
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            defaultCenter={center}
+            center={center}
+            zoom={12}
+            options={options}
+            onLoad={onLoad}
+        // onUnmount={onUnmount}
+        >
+            <>
+                {(mapBase &&
+                    <Circle
+                        center={{ lat: parseFloat(mapBase.lat), lng: parseFloat(mapBase.lng) }}
+                        radius={15000}
+                        options={{
+                            strokeOpacity: 0.5,
+                            strokeWeight: 2,
+                            clickable: false,
+                            draggable: false,
+                            editable: false,
+                            visible: true,
+                            zIndex: 1,
+                            fillOpacity: 0.05,
+                            strokeColor: "#FBC02D",
+                            fillColor: "#FBC02D"
+                        }}
+                    />
+                )}
+                {mapBase && (
+                    <Marker
+                        position={{ lat: parseFloat(mapBase.lat), lng: parseFloat(mapBase.lng) }}
+                        title="Location Center"
+                    >
+                    </Marker>
+                )}
+
+                {apiEvents &&
+                    <MarkerClusterer>
+                        {(clusterer) =>
+                            apiEvents.map((event, index) => (
+                                event.location && (
+                                    <Marker
+                                        position={{ lat: parseFloat(event.location[1]), lng: parseFloat(event.location[0]) }}
+                                        key={index}
+                                        fillColor={"yellow"}
+                                        fillOpacity={0.5}
+                                        clusterer={clusterer}
+                                        label={index + 1 + ""}
+                                        icon={'http://maps.google.com/mapfiles/kml/paddle/blu-blank.png'}
+                                    >
+
+                                    </Marker>)
+                            ))
+                        }
+                    </MarkerClusterer>
+                }
+            </>
+        </GoogleMap>
     )
     // : <div>loading...</div>
 }
