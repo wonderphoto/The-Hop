@@ -1,8 +1,9 @@
 import React from "react";
 import regeneratorRuntime from "regenerator-runtime";
 import AutoComplete from "react-google-autocomplete";
+// import { Autocomplete } from '@react-google-maps/api';
 
-export const SearchBox = ({ apiEvents, setApiEvents }) => {
+export const SearchBox = ({ apiEvents, setApiEvents, setMapBase }) => {
   const apiKey = process.env.PREDICTHQ_API_KEY;
   // today's date for filling in default value of date input boxes in options
   let todayDate = new Date().toISOString().slice(0, 10);
@@ -107,13 +108,14 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
          m-0
          focus:text-gray-700 focus:bg-white focus:border-blue-500 focus:outline-none
          "
-          apiKey={process.env.GOOGLE_MAPS}
+          // apiKey={process.env.GOOGLE_MAPS}
           options={{
-            types: ["geocode"],
+            types: ["address"],
             componentRestrictions: { country: "us" },
           }}
           onPlaceSelected={(place) => console.log('returned autocompleted place is: ', place)}
         />
+
       </div>
       <div className="flex space-x-2 mb-3">
         <div>
