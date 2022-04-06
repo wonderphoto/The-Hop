@@ -3,7 +3,7 @@ import { Header } from "./Header";
 import { Sidebar } from "./homepage/Sidebar";
 import { Map } from "./homepage/Map";
 import { Footer } from "./Footer";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useJsApiLoader } from '@react-google-maps/api';
 import { useLocation } from "react-router-dom";
 
@@ -11,8 +11,14 @@ const placeLib = ['places'];
 export const HomePage = ({ user, setUser }) => {
   const [apiEvents, setApiEvents] = useState([]);
   const [mapBase, setMapBase] = useState({});
+<<<<<<< HEAD
   const location = useLocation();
 
+||||||| constructed merge base
+
+=======
+  const mapRef = useRef();
+>>>>>>> added marker and auto pan to map
 
   // load GoogleMap API key here so we don't call it twice in the autocomplete and google map components
   const { isLoaded } = useJsApiLoader({
@@ -32,8 +38,8 @@ export const HomePage = ({ user, setUser }) => {
     <div className="flex-col">
       <Header user={user} setUser={setUser} />
       <div className="flex relative">
-        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} setMapBase={setMapBase} />
-        <Map apiEvents={apiEvents} mapBase={mapBase} />
+        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} setMapBase={setMapBase} mapRef={mapRef} />
+        <Map apiEvents={apiEvents} mapBase={mapBase} mapRef={mapRef} />
       </div>
       <Footer />
     </div>
