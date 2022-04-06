@@ -14,11 +14,12 @@ export const SignupPage = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({ "username": username, "password": password, "email": email }),
         }).then(async (response) => {
             if (response.status === 200) {
-                const user = await response.json();
-                setUser(user);
+                // const user = await response.json();
+                // setUser(user);
                 navigate("/");
             } else {
                 alert("Error during sign up process")

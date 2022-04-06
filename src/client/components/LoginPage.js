@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 
-export const LoginPage = ({ setUser }) => {
+export const LoginPage = () => {
     let navigate = useNavigate();
 
     const verifyUser = () => {
@@ -13,13 +13,15 @@ export const LoginPage = ({ setUser }) => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: "include",
             body: JSON.stringify({ "username": username, "password": password }),
         }).then(response => response.json())
             .then(user => {
                 console.log("returned user from login is: ", user)
                 if (user.username === username) {
-                    setUser(user);
+                    // setUser(user);
                     navigate("/");
+                    window.location.reload(true);
                 }
                 else {
                     alert('Wrong password!');
