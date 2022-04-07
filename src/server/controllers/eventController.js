@@ -7,9 +7,10 @@ const eventController = {};
 eventController.getSavedEvents = async (req, res, next) => {
   try {
     // TODO change user id to be pulled from session instead from req.body
-    //const userid = req.session.user.userid;
-    //const { userid } = req.body;
-    userid = 16;
+    const userid = req.query.userid;
+    // const { userid } = req.body;
+    console.log('userid in getSavedEvents is ', userid)
+
     // get data from user_events table and join with events table
     const sqlQuery = `
           SELECT *
