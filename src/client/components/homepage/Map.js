@@ -9,8 +9,8 @@ import { Circle, GoogleMap, Marker, MarkerClusterer, InfoWindow, useJsApiLoader 
 // need to add number to apiEvents, - Done
 // render number on eventCard, - Done
 // show number on bubble, -Done
-// learn how to create info window that is toggled on click of marker
-// pass info from each event into info window and marker
+// learn how to create info window that is toggled on click of marker - done
+// pass info from each event into info window and marker - done
 
 const containerStyle = {
     width: '100%',
