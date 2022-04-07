@@ -3,6 +3,7 @@ import React from 'react';
 
 
 export const SavedEventCard = ({ event, cardId, user }) => {
+    const link = `https://www.google.com/search?q=${event.title}`;
 
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
@@ -15,12 +16,20 @@ export const SavedEventCard = ({ event, cardId, user }) => {
 
     return (
       
-        <div className='w-full flex justify-center'>
+        <div class="flex justify-center">
+            <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">{event.title}</h5>
+                <p class="text-gray-700 text-base mb-4">Starts at {startTime}</p>
+                <a href={link} target="new">
+                <button type="button" class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"onClick={link}>Search {event.title}</button></a>
+            </div>
+        </div>
+/* <div className='w-full flex justify-center'>
             <p>{event.title}</p>
                 <div className="text-gray-700 text-md">
                 <p>Starts at {startTime}</p>
             </div>
-        </div>
+        </div> */
         // <div className="flex justify-center">
         //     <div className="rounded-lg shadow-lg bg-white min-w-[23rem]">
         //         {/* <a href="#!">
