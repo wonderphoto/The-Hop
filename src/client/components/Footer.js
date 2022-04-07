@@ -2,9 +2,9 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <footer className="text-center text-white bg-gray-200" >
-      <div className="container pt-9">
-        <div className="flex justify-center mb-9">
+    <footer className="text-center text-white bg-green-300" >
+      <div className="container pt-6">
+        <div className="flex justify-center mb-4">
           <a href="#!" className="mr-9 text-gray-800">
             <svg
               aria-hidden="true"
@@ -110,7 +110,7 @@ export const Footer = () => {
         </div>
       </div>
     
-      <div className="text-center text-gray-700 p-4 bg-gray-100">
+      <div className="text-center text-gray-700 p-3 bg-green-200">
         © Copyright 2022 
         <a className="text-gray-800" href="https://tailwind-elements.com/"> The Hop!</a>
       </div>

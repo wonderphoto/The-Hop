@@ -49,11 +49,12 @@ export const Header = ({ user, setUser }) => {
   // }
 
   return (
-    <nav className="bg-gray-700 border-gray-200 px-20 sm:px-4 py-2.5 h-20">
-      <div className="container flex flex-wrap justify-between items-center mx-auto">
-        <a className="flex items-center">
+    // <nav className="bg-green-500 border-gray-200 h-20">
+    <nav className="bg-gradient-to-r from-green-600 to-green-300 h-20">
+      <div className="flex flex-wrap justify-between items-center">
+        <a className="pl-10">
           <img 
-            src="/img/transparentLogo.png"
+            src="/img/logo.png"
             id="logo"
             alt=""
           />
@@ -67,7 +68,7 @@ export const Header = ({ user, setUser }) => {
         ) : (
           <button
             type="button"
-            className="inline-block px-6 py-2.5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
+            className="inline-block px-7 py-2.5 mb-10 mr-10 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
             onClick={navLogin}
           >
             Login
