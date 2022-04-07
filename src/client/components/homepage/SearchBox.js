@@ -3,7 +3,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import AutoComplete from "react-google-autocomplete";
 // import { Autocomplete } from '@react-google-maps/api';
 
-export const SearchBox = ({ apiEvents, setApiEvents, setMapBase }) => {
+export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCircleRadius }) => {
   const apiKey = process.env.PREDICTHQ_API_KEY;
   // today's date for filling in default value of date input boxes in options
   let todayDate = new Date().toISOString().slice(0, 10);
@@ -18,6 +18,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase }) => {
     return arr.length ? arr.join(', ') : '';
   }
 
+  let latitude, longitude;
   const onFind = async () => {
     // TODO check if location is entered, if not return a modal error
     let location = document.getElementById("locationForm").value;
@@ -34,11 +35,14 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase }) => {
     let geocodedAddress = await fetch(geocodingUrl).then(res => res.json());
 
     // pull latitude and longitude from results of geocoding api
-    let latitude = geocodedAddress.results[0].geometry.location.lat;
-    let longitude = geocodedAddress.results[0].geometry.location.lng;
+    latitude = geocodedAddress.results[0].geometry.location.lat;
+    longitude = geocodedAddress.results[0].geometry.location.lng;
+    console.log(`latitude is ${latitude}, longitude is ${longitude}`);
+    setMapBase({ lat: latitude, lng: longitude });
 
     // by default radius is set to 10 miles
     let radius = document.getElementById("radiusForm").value;
+    setCircleRadius(radius);
 
     // by default the start and end date are today's date
     let startDate = document.getElementById("startDateForm").value;
@@ -110,10 +114,12 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase }) => {
          "
           // apiKey={process.env.GOOGLE_MAPS}
           options={{
-            types: ["address"],
+            types: ["geocode"],
             componentRestrictions: { country: "us" },
           }}
-          onPlaceSelected={(place) => console.log('returned autocompleted place is: ', place)}
+          onPlaceSelected={(place) => {
+            console.log('returned autocompleted place is: ', place);
+          }}
         />
 
       </div>

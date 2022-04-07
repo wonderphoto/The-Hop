@@ -17,7 +17,7 @@ export const EventsContainer = ({ apiEvents, user }) => {
             {apiEvents.length > 0 ?
                 <div className='p-4 h-[33rem] space-y-2 overflow-y-scroll relative'>
                     {apiEvents.map((event, index) => (
-                        <EventCard event={event} cardId={index} key={index} user={user}></EventCard>
+                        <EventCard event={event} cardId={index} key={index} user={user} num={index + 1}></EventCard>
                     ))
                     }
                 </div>

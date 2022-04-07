@@ -2,13 +2,13 @@ import React from 'react';
 
 
 
-export const SavedEventCard = ({ event, cardId, user }) => {
+export const SavedEventCard = ({ event, cardId, user, userEvents, setUserEvents }) => {
     // const options = { }
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
         const date = new Date(datetime);
-        return date.toLocaleString("en-US", {timeZone: "America/Los_Angeles", timeZoneName: "short"} )
-        ;
+        return date.toLocaleString("en-US", { timeZone: "America/Los_Angeles", timeZoneName: "short" })
+            ;
     }
     const startTime = timeConverter(event.start_time);
     const link = `https://www.google.com/search?q=${event.title}+${startTime}`;
@@ -31,6 +31,7 @@ export const SavedEventCard = ({ event, cardId, user }) => {
         }).then(response => response.json())
             .then(data => {
                 console.log('event deleted: ', data);
+                setUserEvents(userEvents.filter((e) => e.eventid !== event.eventid));
             })
             .catch(err => {
                 console.log(err);
@@ -43,7 +44,7 @@ export const SavedEventCard = ({ event, cardId, user }) => {
                 <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">{event.title}</h5>
                 <p className="text-gray-700 text-base mb-4">Starts at {startTime} at {event.address}</p>
                 <a href={link} target="new">
-                <button type="button" className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-lg leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Search {event.title}</button></a>
+                    <button type="button" className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-lg leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Search {event.title}</button></a>
                 <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onClick={() => deleteEvent()}>Delete This Event</button>
             </div>
         </div>
@@ -51,7 +52,7 @@ export const SavedEventCard = ({ event, cardId, user }) => {
 }
 /* <div className='w-full flex justify-center'>
             <p>{event.title}</p>
-                <div className="text-gray-700 text-md">
+            <div className="text-gray-700 text-md">
                 <p>Starts at {startTime}</p>
             </div>
         </div> */
@@ -60,32 +61,32 @@ export const SavedEventCard = ({ event, cardId, user }) => {
         //         {/* <a href="#!">
         //             <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
         //         </a> */}
-                // <div className="p-4">
-                //     <h5 className="text-gray-900 text-xl font-semibold mb-2">{event.title}</h5>
-                //     <div className='w-full flex justify-between'>
-                //         <p className="text-gray-700 text-md">
-                //             Category
-                //         </p>
-                //         <p className="text-gray-700">{event.category}</p>
-                //     </div>
-                //     <div className='w-full flex justify-between'>
-                //         <p className="text-gray-700 text-md">
-                //             Labels
-                //         </p>
-                //         <p className="text-gray-700">{event.labels.slice(0, 2).join(', ')}</p>
-                //     </div>
-                    
-    //                 <div className='w-full flex justify-between'>
-    //                     <p className="text-gray-700 text-md">
-    //                         Start Time
-    //                     </p>
-    //                     <p className="text-gray-700">{event.start}</p>
-    //                 </div>
-    //                 <div className='w-full flex justify-between'>
-    //                     <p className="text-gray-700 text-md">
-    //                         End Time
-    //                     </p>
-                    
+        // <div className="p-4">
+        //     <h5 className="text-gray-900 text-xl font-semibold mb-2">{event.title}</h5>
+        //     <div className='w-full flex justify-between'>
+        //         <p className="text-gray-700 text-md">
+        //             Category
+        //         </p>
+        //         <p className="text-gray-700">{event.category}</p>
+        //     </div>
+        //     <div className='w-full flex justify-between'>
+        //         <p className="text-gray-700 text-md">
+        //             Labels
+        //         </p>
+        //         <p className="text-gray-700">{event.labels.slice(0, 2).join(', ')}</p>
+        //     </div>
+
+        //                 <div className='w-full flex justify-between'>
+        //                     <p className="text-gray-700 text-md">
+        //                         Start Time
+        //                     </p>
+        //                     <p className="text-gray-700">{event.start}</p>
+        //                 </div>
+        //                 <div className='w-full flex justify-between'>
+        //                     <p className="text-gray-700 text-md">
+        //                         End Time
+        //                     </p>
+
 
     //                 <div className='flex justify-between mx-4'>
     //                     {event.description ?

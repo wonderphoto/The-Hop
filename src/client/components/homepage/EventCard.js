@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export const EventCard = ({ event, cardId, user }) => {
+export const EventCard = ({ event, cardId, user, num }) => {
 
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
@@ -24,6 +24,7 @@ export const EventCard = ({ event, cardId, user }) => {
     const privateVal = event.private;
     const local_rank = event.local_rank;
     const rank = event.rank;
+    const address = event.entities[0] ? event.entities[0].formatted_address.slice(0, -30) : null;
 
     const saveEvent = () => {
         fetch('http://localhost:3000/api/events', {
@@ -45,7 +46,8 @@ export const EventCard = ({ event, cardId, user }) => {
                 start_time: start_time,
                 private: privateVal,
                 rank: rank,
-                local_rank: local_rank
+                local_rank: local_rank,
+                address: address
             }),
         }).then(response => response.json())
             .then(data => {
@@ -58,6 +60,7 @@ export const EventCard = ({ event, cardId, user }) => {
                 console.log(err);
             })
     }
+    console.log('user id is:', user.userid);
 
     return (
         <div className="flex justify-center">
@@ -66,7 +69,7 @@ export const EventCard = ({ event, cardId, user }) => {
                     <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
                 </a> */}
                 <div className="p-4">
-                    <h5 className="text-gray-900 text-xl font-semibold mb-2">{event.title}</h5>
+                    <h5 className="text-gray-900 text-xl font-semibold mb-2">{num}. {event.title}</h5>
                     <div className='w-full flex justify-between'>
                         <p className="text-gray-700 text-md">
                             Category
