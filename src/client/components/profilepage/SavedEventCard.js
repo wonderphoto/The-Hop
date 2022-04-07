@@ -3,28 +3,52 @@ import React from 'react';
 
 
 export const SavedEventCard = ({ event, cardId, user }) => {
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+    // const options = { }
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
         const date = new Date(datetime);
-        return date.toLocaleString('en-US', options).slice(0, 21);
+        return date.toLocaleString("en-US", {timeZone: "America/Los_Angeles", timeZoneName: "short"} )
+        ;
     }
     const startTime = timeConverter(event.start_time);
     const link = `https://www.google.com/search?q=${event.title}+${startTime}`;
-    console.log(event.start_time);
-    console.log(startTime);
+    // console.log(event.start_time);
+    // console.log(startTime);
+    // console.log(user);
+    // console.log("event.id" - event.id);
 
+    const deleteEvent = () => {
+        fetch('http://localhost:3000/api/events', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userid: user.userid, // in case we need to get userid from state instead of session
+                eventid: event.eventid,
+                username: user.username,
+            }),
+        }).then(response => response.json())
+            .then(data => {
+                console.log('event deleted: ', data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
 
     return (
-      
-        <div class="flex justify-center">
-            <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
-                <h5 class="text-gray-900 text-xl leading-tight font-medium mb-2">{event.title}</h5>
-                <p class="text-gray-700 text-base mb-4">Starts at {startTime}</p>
+        <div className="flex justify-center">
+            <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">{event.title}</h5>
+                <p className="text-gray-700 text-base mb-4">Starts at {startTime} at {event.address}</p>
                 <a href={link} target="new">
-                <button type="button" class="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Search {event.title}</button></a>
+                <button type="button" className="inline-block px-6 py-2 border-2 border-blue-600 text-blue-600 font-medium text-lg leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">Search {event.title}</button></a>
+                <button type="button" className="inline-block px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out" onClick={() => deleteEvent()}>Delete This Event</button>
             </div>
         </div>
+    )
+}
 /* <div className='w-full flex justify-center'>
             <p>{event.title}</p>
                 <div className="text-gray-700 text-md">
@@ -93,5 +117,5 @@ export const SavedEventCard = ({ event, cardId, user }) => {
     //             </div>
     //         </div>
     //     </div>
- )
-}
+//  )
+// }
