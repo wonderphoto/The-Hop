@@ -80,7 +80,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: "Global error handler caught unknown middleware error",
     status: 400,
-    message: { err: "An error occurred" },
+    message: { err: `An error occurred ${err}` },
   };
 
   // sets to default err obj unless an err param is defined

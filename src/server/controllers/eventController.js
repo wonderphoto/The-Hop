@@ -52,6 +52,7 @@ eventController.saveEvent = async (req, res, next) => {
       private,
       rank,
       local_rank,
+      address
     } = req.body;
 
     // check if the eventid is in the events table
@@ -59,15 +60,15 @@ eventController.saveEvent = async (req, res, next) => {
     const sqlQuery1 = `
       INSERT INTO events (eventid, title, category, labels, description,
       predicted_attendance, latitude, longitude, start_time,
-      private, rank, local_rank)
+      private, rank, local_rank, address)
 
-      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+      VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
 
       ON CONFLICT (eventid) DO NOTHING
 
       RETURNING eventid, title, category, labels, description,
       predicted_attendance, latitude, longitude, start_time,
-      private, rank, local_rank
+      private, rank, local_rank, address
     ;`;
 
     const params1 = [
@@ -83,6 +84,7 @@ eventController.saveEvent = async (req, res, next) => {
       private,
       rank,
       local_rank,
+      address
     ];
 
     const savedEvent = await db.query(sqlQuery1, params1);
@@ -127,8 +129,8 @@ eventController.saveEvent = async (req, res, next) => {
 eventController.deleteEvent = async (req, res, next) => {
   try {
     // TODO change user id to be pulled from session instead from req.body
-    const userid = req.session.user.userid;
-    const { eventid } = req.body;
+    // const userid = req.session.user.userid;
+    const { eventid, userid } = req.body;
 
     // delete from user_events table first
     // if there is no such eventid in the user_events table then we can delete that eventid from events,
@@ -142,20 +144,21 @@ eventController.deleteEvent = async (req, res, next) => {
             DELETE from events
             WHERE eventid NOT IN (SELECT eventid FROM user_events)
         `;
-
+    console.log(req.body);
     const params = [userid, eventid];
     const deletedEvent = await db.query(sqlQuery, params);
+    console.log(deletedEvent);
     const deletedEvent2 = await db.query(sqlQuery2);
 
-    console.log(
-      "deleted event" + eventid + "from user: " + req.session.user.username
-    );
+    // console.log(
+    //   "deleted event" + eventid + "from user: " + req.session.user.username
+    // );
 
     return next();
   } catch (err) {
     return next({
       log: `Error in eventController.deleteEvent : ${err}`,
-      message: { err: "Error occurred in eventController.deleteEvent" },
+      message: { err: `Error occurred in eventController.deleteEvent ${err}` },
     });
   }
 };
