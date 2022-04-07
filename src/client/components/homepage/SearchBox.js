@@ -3,7 +3,7 @@ import regeneratorRuntime from "regenerator-runtime";
 import AutoComplete from "react-google-autocomplete";
 // import { Autocomplete } from '@react-google-maps/api';
 
-export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef }) => {
+export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCircleRadius }) => {
   const apiKey = process.env.PREDICTHQ_API_KEY;
   // today's date for filling in default value of date input boxes in options
   let todayDate = new Date().toISOString().slice(0, 10);
@@ -42,6 +42,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef }) => {
 
     // by default radius is set to 10 miles
     let radius = document.getElementById("radiusForm").value;
+    setCircleRadius(radius);
 
     // by default the start and end date are today's date
     let startDate = document.getElementById("startDateForm").value;

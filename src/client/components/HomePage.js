@@ -11,6 +11,8 @@ const placeLib = ['places'];
 export const HomePage = ({ user, setUser }) => {
   const [apiEvents, setApiEvents] = useState([]);
   const [mapBase, setMapBase] = useState({});
+  const [circleRadius, setCircleRadius] = useState(0);
+
   const location = useLocation();
 
   const mapRef = useRef();
@@ -33,8 +35,8 @@ export const HomePage = ({ user, setUser }) => {
     <div className="flex-col">
       <Header user={user} setUser={setUser} />
       <div className="flex relative">
-        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} setMapBase={setMapBase} mapRef={mapRef} />
-        <Map apiEvents={apiEvents} mapBase={mapBase} mapRef={mapRef} />
+        <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} setMapBase={setMapBase} mapRef={mapRef} setCircleRadius={setCircleRadius} />
+        <Map apiEvents={apiEvents} mapBase={mapBase} mapRef={mapRef} circleRadius={circleRadius} />
       </div>
       <Footer />
     </div>

@@ -17,7 +17,7 @@ const containerStyle = {
     height: '85vh'
 };
 
-export const Map = ({ apiEvents, mapBase, mapRef }) => {
+export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
     useEffect(() => {
         mapRef.current?.panTo(mapBase);
 
@@ -26,7 +26,7 @@ export const Map = ({ apiEvents, mapBase, mapRef }) => {
     const center = useMemo(() => ({ lat: 37.768, lng: -122.42 }), []);
     const options = useMemo(() => ({
         mapId: "4db6fc355c1b4a66",
-        disableDefaultUI: true,
+        disableDefaultUI: false,
         clickableIcons: false,
     }), []);
 
@@ -59,7 +59,7 @@ export const Map = ({ apiEvents, mapBase, mapRef }) => {
                 {(mapBase &&
                     <Circle
                         center={{ lat: parseFloat(mapBase.lat), lng: parseFloat(mapBase.lng) }}
-                        radius={15000}
+                        radius={circleRadius * 1609}
                         options={{
                             strokeOpacity: 0.5,
                             strokeWeight: 2,

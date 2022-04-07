@@ -24,6 +24,7 @@ export const EventCard = ({ event, cardId, user, num }) => {
     const privateVal = event.private;
     const local_rank = event.local_rank;
     const rank = event.rank;
+    const address = event.entities[0] ? event.entities[0].formatted_address.slice(0, -30) : null;
 
     const saveEvent = () => {
         fetch('http://localhost:3000/api/events', {
@@ -45,7 +46,8 @@ export const EventCard = ({ event, cardId, user, num }) => {
                 start_time: start_time,
                 private: privateVal,
                 rank: rank,
-                local_rank: local_rank
+                local_rank: local_rank,
+                address: address
             }),
         }).then(response => response.json())
             .then(data => {
@@ -58,6 +60,7 @@ export const EventCard = ({ event, cardId, user, num }) => {
                 console.log(err);
             })
     }
+    console.log('user id is:', user.userid);
 
     return (
         <div className="flex justify-center">
