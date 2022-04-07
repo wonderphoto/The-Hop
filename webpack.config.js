@@ -13,7 +13,6 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "build"),
     filename: "bundle.js",
-    publicPath: "/",
   },
   mode: process.env.NODE_ENV,
   module: {
@@ -90,14 +89,9 @@ module.exports = {
   ],
 
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, "build"),
-      publicPath: "/build",
-    },
     historyApiFallback: true,
-    compress: true,
     proxy: {
-      "/users": "http://localhost:3000",
+      "/api/": "http://localhost:3000",
     },
     open: false,
   },
