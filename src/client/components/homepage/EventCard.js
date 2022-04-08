@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 export const EventCard = ({ event, cardId, user, num }) => {
@@ -51,7 +52,6 @@ export const EventCard = ({ event, cardId, user, num }) => {
             }),
         }).then(response => response.json())
             .then(data => {
-                console.log('event saved: ', data);
                 if (data === 'event has been saved') {
                     document.getElementById(`hiddenError${cardId}`).style.display = 'flex';
                 }
@@ -60,7 +60,6 @@ export const EventCard = ({ event, cardId, user, num }) => {
                 console.log(err);
             })
     }
-    console.log('user id is:', user.userid);
 
     return (
         <div className="flex justify-center">
@@ -133,12 +132,18 @@ export const EventCard = ({ event, cardId, user, num }) => {
                     <div className='flex justify-between mx-4'>
                         {event.description ?
                             <button
-                                className="px-4 py-2 mt-4 rounded-md text-gray-600 bg-gray-200 font-semibold text-sm flex align-center w-max cursor-pointer hover:bg-gray-400 hover:shadow-lg focus:bg-gray-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out
+                                className="px-4 py-2 mt-4 rounded-md text-gray-600 bg-gray-200 font-semibold text-sm flex align-center w-max
+                                cursor-pointer hover:bg-gray-400 hover:shadow-lg focus:bg-gray-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out
                                                 "data-bs-toggle="collapse" data-bs-target={`#descriptionCollapse${cardId}`} aria-expanded="false" aria-controls={`descriptionCollapse${cardId}`}>
                                 Extra Info
                             </button>
                             :
-                            <div></div>}
+                            <div className="text-white mr-[92px]">.</div>}
+                        <SearchIcon className="mt-4 p-0.5 rounded-md shadow-sm text-gray-300 bg-gray-200
+                        cursor-pointer hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out"
+                            style={{ color: "green", fontSize: 35 }}
+                            onClick={() => window.open(`https://www.google.com/search?q=${event.title}+${startTime}`, '_blank').focus()}
+                        />
                         {JSON.stringify(user) === JSON.stringify({}) ?
                             <button type="button" className=" cursor-not-allowed opacity-50 mt-4 text-white inline-block px-6 py-2.5 bg-emerald-600 font-medium text-xs leading-tight uppercase rounded shadow-md">
                                 Save Event</button>

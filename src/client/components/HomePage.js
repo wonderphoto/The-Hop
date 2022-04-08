@@ -27,7 +27,6 @@ export const HomePage = ({ user, setUser }) => {
 
   useEffect(() => {
     // re-render page when the apiEvents object or when user logs in or out changes.
-    console.log("useEffect in HomePage is fired, reloaded page due to change in apiEvents")
   }, [apiEvents.length, JSON.stringify(user), location])
 
   if (!isLoaded) return <div>Waiting for Google API to load ...</div>;

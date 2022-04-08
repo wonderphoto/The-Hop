@@ -30,7 +30,6 @@ export const SavedEventCard = ({ event, cardId, user, userEvents, setUserEvents 
             }),
         }).then(response => response.json())
             .then(data => {
-                console.log('event deleted: ', data);
                 setUserEvents(userEvents.filter((e) => e.eventid !== event.eventid));
             })
             .catch(err => {
