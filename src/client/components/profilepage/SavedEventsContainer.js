@@ -38,17 +38,11 @@ export const SavedEventsContainer = ({ user }) => {
 
 
     return (
-        <div className="inline-flex h-screen border-2 border-red-300 justify-center overflow-y-auto">
-            <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm text-center">
-                <h5 className="text-gray-900 text-xl leading-tight font-medium mb-4 flex">Saved Events</h5>
-                {/* <p className="list-item text-gray-700 text-base mb-4">
+        <div className="inline-flex h-auto justify-center mt-10">
+            <div className="block p-6 rounded-lg shadow-lg bg-gray-100 max-w-auto text-center">
+                <h4 className="text-gray-900 text-xl leading-tight font-medium mb-4 flex-center">Saved Events</h4>
+                {JSON.stringify(userEvents) !== JSON.stringify({}) ? userEvents.map((event, index) => (
 
-                    </p>
-                    <p className="list-item text-gray-700 text-base mb-4">
-
-                    </p> */}
-
-                {(JSON.stringify(user) !== JSON.stringify({}) && userEvents.length > 0) ? userEvents.map((event, index) => (
                     <SavedEventCard event={event} cardId={index} key={index} user={user} userEvents={userEvents} setUserEvents={setUserEvents}></SavedEventCard>
                 )) : <div></div>}
             </div>

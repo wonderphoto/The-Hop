@@ -155,7 +155,7 @@ eventController.deleteEvent = async (req, res, next) => {
     // console.log(
     //   "deleted event" + eventid + "from user: " + req.session.user.username
     // );
-
+        
     return next();
   } catch (err) {
     return next({
