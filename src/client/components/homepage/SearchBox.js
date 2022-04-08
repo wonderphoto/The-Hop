@@ -54,6 +54,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
       "active.gte": startDate,
       "active.lte": endDate,
       within: radius + "mi@" + latitude + "," + longitude,
+      limit: 30,
     };
     // add category key if categorie(s) is checked by user
     // const categories = getCheckedCategories();
@@ -226,8 +227,8 @@ m-0
 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
 "
                       id="radiusForm"
-                      defaultValue="10"
-                      placeholder="10"
+                      defaultValue="5"
+                      placeholder="5"
                       onChange={(e) => { }}
                     />
                   </div>

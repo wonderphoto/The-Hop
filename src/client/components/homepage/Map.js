@@ -81,14 +81,14 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
                         }}
                     />
                 )}
-                {/* {JSON.stringify(mapBase) !== JSON.stringify({}) && (
+                {JSON.stringify(mapBase) !== JSON.stringify({}) && (
                     <Marker
                         position={{ lat: parseFloat(mapBase.lat), lng: parseFloat(mapBase.lng) }}
                         title="Location Center"
-                        icon="https://kit.fontawesome.com/a076d05399.js"
+                        icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
                     >
                     </Marker>
-                )} */}
+                )}
 
                 {JSON.stringify(apiEvents) !== JSON.stringify({}) &&
                     <MarkerClusterer>
@@ -120,9 +120,10 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
                                             >
                                                 <div className="text-center p-2 bg-gray-50 border-2 border-emerald-400 first-letter: shadow-md flex-row font-gray-500">
                                                     <h3 className='font-semibold text-base'>{event.title}</h3>
-                                                    <h5>Category: {event.category}</h5>
-                                                    <h5>{timeConverter(event.start)}</h5>
-                                                    {event.phq_attendance > 0 && <p>Attendance : {event.phq_attendance}</p>}
+                                                    <h5 className='text-sm'>Category: {event.category}</h5>
+                                                    <h5 className='text-sm'>{timeConverter(event.start)}</h5>
+                                                    {event.phq_attendance > 0 && <p className='text-sm'>Attendance : {event.phq_attendance}</p>}
+                                                    <a href={`https://www.google.com/search?q=${event.title}+${timeConverter(event.start)}`} target='new' className='text-sm text-blue-400 underline cursor-pointer hover:text-blue-600'>Search on Google</a>
                                                 </div>
                                             </InfoWindow>
                                         ) : <></>}
