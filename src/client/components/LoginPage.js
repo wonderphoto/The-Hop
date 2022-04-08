@@ -8,7 +8,7 @@ export const LoginPage = ({ reRender }) => {
     const location = useLocation();
 
     useEffect(() => {
-        console.log('rerender');
+        // console.log('rerender');
     }, [location]);
 
     const verifyUser = () => {
@@ -24,7 +24,6 @@ export const LoginPage = ({ reRender }) => {
         })
             .then(response => response.json())
             .then(user => {
-                console.log("returned user from login is: ", user)
                 if (user.username === username) {
                     navigate('/');
                     window.location.reload(false);
