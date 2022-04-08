@@ -21,7 +21,7 @@ const app = express();
 const SQL_URI = `postgres://${process.env.POSTGRESQL_USER}:${process.env.POSTGRESQL_PASSWORD}@heffalump.db.elephantsql.com/${process.env.POSTGRESQL_USER}`;
 
 // handle requests for static files
-app.use("/assets", express.static("../../build"));
+app.use(express.static(__dirname + '/build')); 
 
 // json parser
 app.use(express.json());
