@@ -42,19 +42,19 @@ export const Map = ({ mapBase }) => {
     //     <></>
     // )
     // return isLoaded ? (
-    return ( null
-        // <GoogleMap
-        //     mapContainerStyle={containerStyle}
-        //     defaultCenter={center}
-        //     center={center}
-        //     zoom={14}
-        //     options={options}
-        // // onLoad={onLoad}
-        // // onUnmount={onUnmount}
-        // >
-        //     { /* Child components, such as markers, info windows, etc. */}
-        //     <></>
-        // </GoogleMap>
+    return ( 
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            defaultCenter={center}
+            center={center}
+            zoom={14}
+            options={options}
+        // onLoad={onLoad}
+        // onUnmount={onUnmount}
+        >
+            { /* Child components, such as markers, info windows, etc. */}
+            <></>
+        </GoogleMap>
     )
     // : <div>loading...</div>
 }
