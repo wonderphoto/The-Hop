@@ -18,7 +18,10 @@ export const EventsContainer = ({ apiEvents, user }) => {
             {apiEvents.length === 0 ?
                 <div className="h-auto">
                     <a>
-                    <img alt="" src="../../../../public/img/global.png" />
+                        <img
+                            //src="img/geometric.png"
+                            id="sidebar_image"
+                            alt="" />
                     </a>
                 </div>
                 : <div></div>
