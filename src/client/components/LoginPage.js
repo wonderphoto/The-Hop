@@ -7,9 +7,9 @@ export const LoginPage = ({ reRender }) => {
     let navigate = useNavigate();
     const location = useLocation();
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('rerender');
-    },[location]);
+    }, [location]);
 
     const verifyUser = () => {
         let username = document.getElementById("usernameLoginForm").value;
@@ -22,7 +22,7 @@ export const LoginPage = ({ reRender }) => {
             credentials: "include",
             body: JSON.stringify({ "username": username, "password": password }),
         })
-        .then(response => response.json())
+            .then(response => response.json())
             .then(user => {
                 console.log("returned user from login is: ", user)
                 if (user.username === username) {

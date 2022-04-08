@@ -21,7 +21,7 @@ const app = express();
 const SQL_URI = `postgres://${process.env.POSTGRESQL_USER}:${process.env.POSTGRESQL_PASSWORD}@heffalump.db.elephantsql.com/${process.env.POSTGRESQL_USER}`;
 
 // handle requests for static files
-app.use("/assets", express.static("../../build"));
+app.use(express.static(__dirname + '/build')); 
 
 // json parser
 app.use(express.json());
@@ -80,7 +80,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: "Global error handler caught unknown middleware error",
     status: 400,
-    message: { err: "An error occurred" },
+    message: { err: `An error occurred ${err}` },
   };
 
   // sets to default err obj unless an err param is defined
