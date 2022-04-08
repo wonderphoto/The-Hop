@@ -7,7 +7,7 @@ import { Footer } from './Footer'
 
 export const ProfilePage = ({ user, setUser }) => {
   return (
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col'>
       <Header user={ user } setUser={ setUser } />
         <div className="font-serif">
           <div className="inline-flex flex-col justify-items-start h-screen w-1/2">

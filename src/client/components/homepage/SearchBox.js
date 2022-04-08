@@ -91,7 +91,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
   return (
     <div
       id="SearchBox"
-      className="flex bg-slate-50 flex-col border-2 border-gray-300 justify-center items-center w-full "
+      className="flex bg-slate-50 flex-col justify-center items-center w-full p-5 pl-2 pb-2"
     >
       <div className="flex mt-4 mb-3">
         <div className="text-md font-semibold text-gray-500 mt-2 mr-1">Location: </div>
@@ -146,13 +146,12 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
                 Search Options</h3>
               <button type="button" className="btn-close box-content w-4 h-4 p-2 -my-5 -mr-2 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div className="offcanvas-body flex-grow p-4 text-lg overflow-y-auto">
+            <div className="offcanvas-body flex-grow p-0 pb-0 text-lg overflow-y-auto">
               <div>
-                Please select additional options below:
               </div>
               <div className="flex mt-2 justify-center">
                 <div>
-                  <div className="flex-row mb-3">
+                  <div className="flex-row">
                     <div className="text-md text-gray-500 mt-1">Start date</div>
                     <input
                       type="date"
@@ -269,6 +268,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="conferences"
                       id="flexCheckConferences"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
