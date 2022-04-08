@@ -75,6 +75,6 @@ export const Header = ({ user, setUser }) => {
         )}
       </div>
     </nav>
-  );
-};
+  )
+}
 

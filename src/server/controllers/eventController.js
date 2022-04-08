@@ -16,6 +16,7 @@ eventController.getSavedEvents = async (req, res, next) => {
           FROM user_events AS ue
           LEFT JOIN events AS e ON ue.eventid = e.eventid
           WHERE userid = $1
+          ORDER BY start_time
           ;`;
 
     const params = [userid];
@@ -153,7 +154,7 @@ eventController.deleteEvent = async (req, res, next) => {
     // console.log(
     //   "deleted event" + eventid + "from user: " + req.session.user.username
     // );
-
+        
     return next();
   } catch (err) {
     return next({

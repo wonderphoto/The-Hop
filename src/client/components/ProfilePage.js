@@ -7,13 +7,13 @@ import { Footer } from './Footer'
 
 export const ProfilePage = ({ user, setUser }) => {
   return (
-    <div className='flex flex-col h-screen'>
+    <div className='flex flex-col h-[40rem]'>
       <Header user={ user } setUser={ setUser } />
         <div className="font-serif">
-          <div className="inline-flex flex-col justify-items-start h-screen w-1/2">
+          <div className="inline-flex flex-col h-[40rem] w-1/2 overflow-y-auto">
             <SavedEventsContainer user={user} />
           </div>
-          <div className="inline-flex flex-col justify-end h-screen justify-end w-1/2"> 
+          <div className="inline-flex flex-col h-[40rem] w-1/2 overflow-y-auto"> 
             <ScheduleCard />
           </div>
         </div>
