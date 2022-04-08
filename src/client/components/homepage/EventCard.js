@@ -52,7 +52,6 @@ export const EventCard = ({ event, cardId, user, num }) => {
             }),
         }).then(response => response.json())
             .then(data => {
-                console.log('event saved: ', data);
                 if (data === 'event has been saved') {
                     document.getElementById(`hiddenError${cardId}`).style.display = 'flex';
                 }
@@ -61,7 +60,6 @@ export const EventCard = ({ event, cardId, user, num }) => {
                 console.log(err);
             })
     }
-    console.log('user id is:', user.userid);
 
     return (
         <div className="flex justify-center">
