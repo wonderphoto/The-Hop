@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
+
 export const Header = ({ user, setUser }) => {
   let navigate = useNavigate();
 
@@ -25,36 +26,25 @@ export const Header = ({ user, setUser }) => {
       body: JSON.stringify({ username: user.username, userid: user.userid }),
     })
       .then((response) => response.json())
-      .then((user) => {
+      .then((res) => {
         console.log(
           "user has been successfully logged out and session destroyed"
         );
         // reset user state to empty object
         setUser({});
-        window.location.reload(true);
+        //window.location.reload(true);
+        console.log("user inside of fetch", user)
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  //   return (
-  //     <div className='w-full py-4 border-color-4 border-green-400 flex justify-between'>
-  //       <p>The Hop!</p>
-  //       <p>Profile</p>
-  //       {JSON.stringify(user) === JSON.stringify({}) ?
-  //         <button onClick={() => navigate('/login')}>Login</button>
-  //         :
-  //         <button onClick={() => logout()}>Logout</button>
 
-  //       }
-  //     </div>
-  //   )
-  // }
-
+  console.log("user is", user)
+  
   return (
-    // <nav className="bg-green-500 border-gray-200 h-20">
-    <nav className="bg-gradient-to-r from-green-400 to-green-300 h-20 drop-shadow-xl">
+    <nav className="bg-gradient-to-r from-green-600 to-green-500 h-20 drop-shadow-xl relative z-50">
       <div className="flex flex-wrap justify-between overflow-visible">
         <div className="overflow-visible static">
           <a className="pl-10 -mt-7 absolute">
@@ -62,11 +52,10 @@ export const Header = ({ user, setUser }) => {
           </a>
         </div>
 
-        {
-        // JSON.stringify(user) !== JSON.stringify({}) 
-        true ? (
+        {JSON.stringify(user) !== JSON.stringify({}) ? 
+        /* {true ?  */
           // drop down menu
-          <div className="flex justify-center z-10">
+          <div className="flex justify-center">
             <div>
               <div className="dropdown relative">
                 <button
@@ -74,6 +63,8 @@ export const Header = ({ user, setUser }) => {
           dropdown-toggle
           px-6
           py-2.5
+          mr-5
+          mt-5
           bg-yellow-500
           text-white
           font-medium
@@ -154,7 +145,7 @@ export const Header = ({ user, setUser }) => {
             "
                       href="#"
                     >
-                      Action
+                      Username: {user.username}
                     </a>
                   </li>
                   <li>
@@ -174,27 +165,7 @@ export const Header = ({ user, setUser }) => {
             "
                       href="#"
                     >
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      className="
-              dropdown-item
-              text-sm
-              py-2
-              px-4
-              font-normal
-              block
-              w-full
-              whitespace-nowrap
-              bg-transparent
-              text-gray-700
-              hover:bg-gray-100
-            "
-                      href="#"
-                    >
-                      Something else here
+                      Email: {user.email}
                     </a>
                   </li>
                   <hr className="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
@@ -214,15 +185,38 @@ export const Header = ({ user, setUser }) => {
               hover:bg-gray-100
             "
                       href="#"
+                      onClick={() => navProfile()}
                     >
-                      Separated link
+                      Profile Page 
                     </a>
                   </li>
+                  <li>
+                    <a
+                      className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                      href="#"
+                      onClick={() => logout()}
+                    >
+                      Logout 
+                    </a>
+                  </li>
+
                 </ul>
               </div>
             </div>
           </div>
-        ) : (
+        : (
           <button
             type="button"
             className="inline-block px-7 py-2.5 mt-5 mr-5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
@@ -235,3 +229,4 @@ export const Header = ({ user, setUser }) => {
     </nav>
   );
 };
+

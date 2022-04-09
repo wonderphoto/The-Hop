@@ -54,6 +54,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
       "active.gte": startDate,
       "active.lte": endDate,
       within: radius + "mi@" + latitude + "," + longitude,
+      limit: 30,
     };
     // add category key if categorie(s) is checked by user
     // const categories = getCheckedCategories();
@@ -79,6 +80,14 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
       .then((response) => response.json())
       .then((data) => {
         console.log('returned data is:', data.results);
+        data.results.forEach((event) => {
+          if (event.location) {
+            event.location[0] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
+            event.location[1] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
+          }
+        })
+        console.log('altered data is:', data.results);
+
         setApiEvents(data.results);
       })
       .catch((err) => {
@@ -226,8 +235,8 @@ m-0
 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
 "
                       id="radiusForm"
-                      defaultValue="10"
-                      placeholder="10"
+                      defaultValue="5"
+                      placeholder="5"
                       onChange={(e) => { }}
                     />
                   </div>

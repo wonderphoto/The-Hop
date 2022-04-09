@@ -5,45 +5,20 @@ import { useState, useEffect } from 'react';
 //savedEventsContainer holds individual event cards that display all event information
 //rendering the event cards fetched from the database
 
-const userEvents = {};
 
-export const SavedEventsContainer = ({ user }) => {
-    const [userEvents, setUserEvents] = useState({});
-
-    useEffect(() => {
-        fetch('http://localhost:3000/api/events', {
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => response.json())
-            .then(data => {
-                setUserEvents(data);
-                console.log("userEvents = ", userEvents);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-
-        // re-render page when the apiEvents object or when user logs in or out changes.
-        console.log("useEffect in savedEventsContainer is fired, reloaded page due to change in apiEvents")
-    }, [JSON.stringify(userEvents)])
-
-    //if we are logged in then we fetch from DB
+export const SavedEventsContainer = ({ user, userEvents, setUserEvents }) => {
 
 
     return (
-        <div className="inline-flex h-screen border-2 border-red-300 justify-center overflow-y-auto">
-            <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm text-center">
-                <h5 className="text-gray-900 text-xl leading-tight font-medium mb-4 flex">Saved Events</h5>
-                {/* <p className="list-item text-gray-700 text-base mb-4">
-
-                    </p>
-                    <p className="list-item text-gray-700 text-base mb-4">
-
-                    </p> */}
-
+        <div className="flex w-full justify-center">
+            <div className="p-6 rounded-lg shadow-lg w-full bg-gray-100 justify-center items-center text-center">
+                {JSON.stringify(userEvents) !== JSON.stringify({}) ?
+                    <h4 className="text-gray-900 mt-3 text-xl leading-tight font-bold mb-4 flex-center">Saved Events</h4>
+                    :
+                    <h4 className="text-gray-900 mt-3 text-xl leading-tight font-medium mb-4 flex-center">Please log in to see events</h4>
+                }
                 {JSON.stringify(userEvents) !== JSON.stringify({}) ? userEvents.map((event, index) => (
-                    <SavedEventCard event={event} cardId={index} key={index} user={user} userEvents={userEvents} setUserEvents={setUserEvents}></SavedEventCard>
+                    <SavedEventCard index={index} event={event} cardId={index} key={index} user={user} userEvents={userEvents} setUserEvents={setUserEvents}></SavedEventCard>
                 )) : <div></div>}
             </div>
         </div>
