@@ -28,11 +28,11 @@ function App() {
       <Routes>
         <Route
           path="/"
-          element={<HomePage user={user} />}
+          element={<HomePage user={user} setUser={setUser} />}
         ></Route>
         <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/signup" element={<SignupPage />}></Route>
-        <Route path="/profile" element={<ProfilePage user={user} />}></Route>
+        <Route path="/profile" element={<ProfilePage user={user} setUser={setUser} />}></Route>
       </Routes>
     </BrowserRouter>
   );

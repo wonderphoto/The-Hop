@@ -14,7 +14,7 @@ import { Circle, GoogleMap, Marker, MarkerClusterer, InfoWindow, useJsApiLoader 
 
 const containerStyle = {
     width: '100%',
-    height: '85vh'
+    height: 'auto'
 };
 
 export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
@@ -96,7 +96,7 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
                             apiEvents.map((event, index) => (
                                 event.location && (
                                     <Marker
-                                        position={{ lat: parseFloat(event.location[1]), lng: parseFloat(event.location[0]) }}
+                                        position={{ lat: parseFloat(event.location[1]) + Math.pow(10, -4) * Math.random(), lng: parseFloat(event.location[0]) + Math.pow(10, -4) * Math.random()}}
                                         key={index}
                                         clusterer={clusterer}
                                         label={{
