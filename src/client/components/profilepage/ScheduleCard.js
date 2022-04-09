@@ -33,11 +33,11 @@ export const ScheduleCard = ({ user, userEvents }) => {
         //     )
         // }
 
-        <div className="flex items-center bg-gray-100 justify-center py-8 px-2">
+        <div className="flex items-center bg-gray-100 justify-center h-full">
             <div className="max-w-sm w-full shadow-lg">
                 <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t">
                     <div className="px-4 flex items-center justify-between">
-                        <span tabIndex="0" className="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800">{months[month]} {year}</span>
+                        <span tabIndex="0" className="focus:outline-none text-lg text-base font-bold dark:text-gray-100 text-gray-800">{months[month]} {year}</span>
                         <div className="flex items-center">
                             <button aria-label="calendar backward" className="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100"
                                 onClick={() => {
@@ -48,7 +48,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                         setMonth(month - 1);
                                     }
                                 }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="15 6 9 12 15 18" />
                                 </svg>
@@ -62,7 +62,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                         setMonth(month + 1);
                                     }
                                 }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="9 6 15 12 9 18" />
                                 </svg>

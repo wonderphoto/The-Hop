@@ -80,6 +80,14 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
       .then((response) => response.json())
       .then((data) => {
         console.log('returned data is:', data.results);
+        data.results.forEach((event) => {
+          if (event.location) {
+            event.location[0] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
+            event.location[1] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
+          }
+        })
+        console.log('altered data is:', data.results);
+
         setApiEvents(data.results);
       })
       .catch((err) => {
