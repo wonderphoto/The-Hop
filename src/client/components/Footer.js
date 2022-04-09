@@ -2,7 +2,7 @@ import React from 'react'
 
 export const Footer = () => {
   return (
-    <footer className="text-center text-white bg-green-300" >
+    <footer className="text-center text-white bg-gray-300" >
       <div className="container mx-auto pt-6">
         <div className="flex justify-center mb-4">
           <a href="#!" className="mr-9 text-gray-800">
@@ -110,7 +110,7 @@ export const Footer = () => {
         </div>
       </div>
     
-      <div className="text-center text-gray-700 p-3 bg-green-200">
+      <div className="text-center text-gray-700 p-3 bg-gray-200">
         © Copyright 2022 
         <a className="text-gray-800" href="https://tailwind-elements.com/"> The Hop!</a>
       </div>

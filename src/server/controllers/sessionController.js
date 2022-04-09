@@ -51,10 +51,10 @@ sessionController.verifyUser = async (req, res, next) => {
 };
 
 sessionController.logout = async (req, res, next) => {
-  if (!req.session.user)
+  if (!req.body.username)
     return next({ log: "Not logged in", message: "Not logged in" });
-  console.log('user session is :', req.session.user);
-  const username = req.session.user.username;
+  console.log('user session is :', req.body.username);
+  const username = req.body.username;
   req.session.authenticated = false;
   req.session.destroy(() => {
     res.clearCookie("userID", { path: "/" });

@@ -35,7 +35,7 @@ router.post("/signup",
 
 // logout can be either delete or post, delete is preferred
 router.post("/logout", sessionController.logout, (req, res, next) => {
-  return res.status(200).json(req.session);
+  return res.status(200).json("User has been logged out");
 });
 
 router.delete("/logout", sessionController.logout, (req, res, next) => {

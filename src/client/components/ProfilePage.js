@@ -10,7 +10,7 @@ export const ProfilePage = ({ user, setUser }) => {
     <div className='flex flex-col h-30'>
       <Header user={ user } setUser={ setUser } />
         <div className="font-serif">
-          <div className="inline-flex flex-col h-[63rem] w-1/2 overflow-y-auto">
+          <div className="inline-flex flex-col h-[83vh] w-1/2 overflow-y-auto">
             <SavedEventsContainer user={user} />
           </div>
           <div className="inline-flex flex-col h-[40rem] w-1/2 overflow-y-auto"> 
