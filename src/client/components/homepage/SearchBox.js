@@ -54,7 +54,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
       "active.gte": startDate,
       "active.lte": endDate,
       within: radius + "mi@" + latitude + "," + longitude,
-      limit: 30,
+      limit: 25,
     };
     // add category key if categorie(s) is checked by user
     // const categories = getCheckedCategories();
