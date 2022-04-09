@@ -53,6 +53,7 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
             zoom={12}
             options={options}
             onLoad={onLoad}
+            className="map"
         // onUnmount={onUnmount}
         >
             <>
