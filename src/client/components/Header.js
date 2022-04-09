@@ -2,17 +2,8 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-<<<<<<< HEAD
 export const Header = ({ user, setUser, setLoggingOut }) => {
-||||||| constructed merge base
-
-export const Header = ({ user, setUser }) => {
-=======
-
-export const Header = ({ user, setUser }) => {
   const location = useLocation();
-
->>>>>>> added carrot image, changed styling for profile page, added homepage routing button
   let navigate = useNavigate();
 
   const navLogin = () => {
@@ -33,16 +24,8 @@ export const Header = ({ user, setUser }) => {
     navHome();
   };
 
-  console.log("user is", user);
+  // console.log("user is", user);
 
-<<<<<<< HEAD
-||||||| constructed merge base
-  console.log("user is", user)
-  
-=======
-  console.log("location is", location.pathname)
-
->>>>>>> added carrot image, changed styling for profile page, added homepage routing button
   return (
     <nav className="bg-gradient-to-r from-green-600 to-green-500 h-20 drop-shadow-xl relative z-50">
       <div className="flex flex-wrap justify-between overflow-visible">
@@ -52,16 +35,8 @@ export const Header = ({ user, setUser }) => {
           </a>
         </div>
 
-<<<<<<< HEAD
         {JSON.stringify(user) !== JSON.stringify({}) ? (
           /* {true ?  */
-||||||| constructed merge base
-        {JSON.stringify(user) !== JSON.stringify({}) ? 
-        /* {true ?  */
-=======
-        {JSON.stringify(user) !== JSON.stringify({}) ?
-          /* {true ?  */
->>>>>>> added carrot image, changed styling for profile page, added homepage routing button
           // drop down menu
           <div className="flex justify-center">
             <div>
@@ -249,7 +224,6 @@ export const Header = ({ user, setUser }) => {
               </div>
             </div>
           </div>
-<<<<<<< HEAD
         ) : (
           <button
             type="button"
@@ -259,27 +233,6 @@ export const Header = ({ user, setUser }) => {
             Login
           </button>
         )}
-||||||| constructed merge base
-        : (
-          <button
-            type="button"
-            className="inline-block px-7 py-2.5 mt-5 mr-5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
-            onClick={navLogin}
-          >
-            Login
-          </button>
-        )}
-=======
-          : (
-            <button
-              type="button"
-              className="inline-block px-7 py-2.5 mt-5 mr-5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
-              onClick={navLogin}
-            >
-              Login
-            </button>
-          )}
->>>>>>> added carrot image, changed styling for profile page, added homepage routing button
       </div>
     </nav>
   );

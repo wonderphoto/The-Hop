@@ -37,7 +37,7 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
     // pull latitude and longitude from results of geocoding api
     latitude = geocodedAddress.results[0].geometry.location.lat;
     longitude = geocodedAddress.results[0].geometry.location.lng;
-    console.log(`latitude is ${latitude}, longitude is ${longitude}`);
+    // console.log(`latitude is ${latitude}, longitude is ${longitude}`);
     setMapBase({ lat: latitude, lng: longitude });
 
     // by default radius is set to 10 miles
@@ -79,14 +79,14 @@ export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCirc
     const events = await fetch(url, eventAPIParams)
       .then((response) => response.json())
       .then((data) => {
-        console.log('returned data is:', data.results);
+        // console.log('returned data is:', data.results);
         data.results.forEach((event) => {
           if (event.location) {
             event.location[0] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
             event.location[1] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
           }
         })
-        console.log('altered data is:', data.results);
+        console.log('returned data from predictHQ api is:', data.results);
 
         setApiEvents(data.results);
       })

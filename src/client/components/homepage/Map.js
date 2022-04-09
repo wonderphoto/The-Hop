@@ -113,7 +113,7 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
                                         }}
                                         icon={{
                                             url: "/img/carrot.png",
-                                            scaledSize: new google.maps.Size(44, 44)
+                                            scaledSize: new google.maps.Size(47, 37)
                                         }}
                                         onClick={() => {
                                             setSelectedEvent(event);
