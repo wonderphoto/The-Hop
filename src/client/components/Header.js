@@ -1,7 +1,9 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export const Header = ({ user, setUser, setLoggingOut }) => {
+  const location = useLocation();
   let navigate = useNavigate();
 
   const navLogin = () => {
@@ -22,7 +24,7 @@ export const Header = ({ user, setUser, setLoggingOut }) => {
     navHome();
   };
 
-  console.log("user is", user);
+  // console.log("user is", user);
 
   return (
     <nav className="bg-gradient-to-r from-green-600 to-green-500 h-20 drop-shadow-xl relative z-50">
@@ -154,7 +156,7 @@ export const Header = ({ user, setUser, setLoggingOut }) => {
                     </a>
                   </li>
                   <hr className="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
-                  <li>
+                  {!/profile/.test(location.pathname) ? <li>
                     <a
                       className="
               dropdown-item
@@ -175,6 +177,28 @@ export const Header = ({ user, setUser, setLoggingOut }) => {
                       Profile Page
                     </a>
                   </li>
+                    :
+                    <li>
+                      <a
+                        className="
+              dropdown-item
+              text-sm
+              py-2
+              px-4
+              font-normal
+              block
+              w-full
+              whitespace-nowrap
+              bg-transparent
+              text-gray-700
+              hover:bg-gray-100
+            "
+                        href="#"
+                        onClick={() => navHome()}
+                      >
+                        Home Page
+                      </a>
+                    </li>}
                   <li>
                     <a
                       className="

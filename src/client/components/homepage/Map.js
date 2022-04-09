@@ -86,7 +86,10 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
                     <Marker
                         position={{ lat: parseFloat(mapBase.lat), lng: parseFloat(mapBase.lng) }}
                         title="Location Center"
-                        icon="https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"
+                        icon={{
+                            url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+                            scaledSize: new google.maps.Size(25, 25)
+                        }}
                     >
                     </Marker>
                 )}
@@ -106,7 +109,11 @@ export const Map = ({ apiEvents, mapBase, mapRef, circleRadius }) => {
                                         label={{
                                             text: index + 1 + "",
                                             color: "#ffffff",
-                                            fontSize: "14px",
+                                            fontSize: "13px",
+                                        }}
+                                        icon={{
+                                            url: "/img/carrot.png",
+                                            scaledSize: new google.maps.Size(47, 37)
                                         }}
                                         onClick={() => {
                                             setSelectedEvent(event);

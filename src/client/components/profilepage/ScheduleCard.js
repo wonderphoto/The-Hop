@@ -16,7 +16,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
             eventsThisMonth.push(parseInt(eventDate.getDate()));
         }
     })
-    console.log('userEvents this month is: ', eventsThisMonth);
+    // console.log('userEvents this month is: ', eventsThisMonth);
 
     return (
         //         <div className="inline-flex h-screen border-2 border-red-300 justify-center">
@@ -37,7 +37,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
             <div className="max-w-sm w-full shadow-lg">
                 <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t">
                     <div className="px-4 flex items-center justify-between">
-                        <span tabIndex="0" className="focus:outline-none text-lg text-base font-bold dark:text-gray-100 text-gray-800">{months[month]} {year}</span>
+                        <span tabIndex="0" className="focus:outline-none text-base font-bold dark:text-gray-100 text-gray-800">{months[month]} {year}</span>
                         <div className="flex items-center">
                             <button aria-label="calendar backward" className="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100"
                                 onClick={() => {

@@ -39,9 +39,9 @@ export const ProfilePage = ({ user, setUser, setLoggingOut }) => {
   return (
     <div className='flex-col'>
       <Header user={user} setUser={setUser} setLoggingOut={setLoggingOut} />
-      <div className="flex font-serif">
+      <div className="flex font-serif bg-gray-100 shadow-lg">
         <div className="h-[86vh] w-1/2 overflow-y-auto">
-          <SavedEventsContainer user={user} userEvents={userEvents} />
+          <SavedEventsContainer user={user} userEvents={userEvents} setUserEvents={setUserEvents} />
         </div>
         <div className="h-[86vh] w-1/2 overflow-y-auto">
           <ScheduleCard user={user} userEvents={userEvents} />
