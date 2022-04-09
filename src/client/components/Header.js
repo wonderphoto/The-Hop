@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-
-export const Header = ({ user, setUser }) => {
+export const Header = ({ user, setUser, setLoggingOut }) => {
   let navigate = useNavigate();
 
   const navLogin = () => {
@@ -18,42 +17,24 @@ export const Header = ({ user, setUser }) => {
   };
 
   const logout = () => {
-    fetch("http://localhost:3000/auth/logout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username: user.username, userid: user.userid }),
-    })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log(
-          "user has been successfully logged out and session destroyed"
-        );
-        // reset user state to empty object
-        setUser({});
-        //window.location.reload(true);
-        console.log("user inside of fetch", user)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setLoggingOut(true);
+    setUser({});
+    navHome();
   };
 
+  console.log("user is", user);
 
-  console.log("user is", user)
-  
   return (
     <nav className="bg-gradient-to-r from-green-600 to-green-500 h-20 drop-shadow-xl relative z-50">
       <div className="flex flex-wrap justify-between overflow-visible">
         <div className="overflow-visible static">
           <a className="pl-10 -mt-7 absolute">
-            <img src="/img/logo.png" id="logo" alt="" onClick={navProfile} />
+            <img src="/img/logo.png" id="logo" alt="" onClick={navHome} />
           </a>
         </div>
 
-        {JSON.stringify(user) !== JSON.stringify({}) ? 
-        /* {true ?  */
+        {JSON.stringify(user) !== JSON.stringify({}) ? (
+          /* {true ?  */
           // drop down menu
           <div className="flex justify-center">
             <div>
@@ -131,6 +112,9 @@ export const Header = ({ user, setUser }) => {
                   <li>
                     <a
                       className="
+              flex
+              justify-between
+              items-center
               dropdown-item
               text-sm
               py-2
@@ -145,7 +129,8 @@ export const Header = ({ user, setUser }) => {
             "
                       href="#"
                     >
-                      Username: {user.username}
+                      <img id='profPic' src="/img/bunny-profile.png" />
+                      @{user.username}
                     </a>
                   </li>
                   <li>
@@ -165,7 +150,7 @@ export const Header = ({ user, setUser }) => {
             "
                       href="#"
                     >
-                      Email: {user.email}
+                      {user.email}
                     </a>
                   </li>
                   <hr className="h-0 my-2 border border-solid border-t-0 border-gray-700 opacity-25" />
@@ -187,7 +172,7 @@ export const Header = ({ user, setUser }) => {
                       href="#"
                       onClick={() => navProfile()}
                     >
-                      Profile Page 
+                      Profile Page
                     </a>
                   </li>
                   <li>
@@ -208,15 +193,14 @@ export const Header = ({ user, setUser }) => {
                       href="#"
                       onClick={() => logout()}
                     >
-                      Logout 
+                      Logout
                     </a>
                   </li>
-
                 </ul>
               </div>
             </div>
           </div>
-        : (
+        ) : (
           <button
             type="button"
             className="inline-block px-7 py-2.5 mt-5 mr-5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
@@ -229,4 +213,3 @@ export const Header = ({ user, setUser }) => {
     </nav>
   );
 };
-
