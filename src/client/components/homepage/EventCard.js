@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
+import SearchIcon from '@mui/icons-material/Search';
 
 
-
-export const EventCard = ({ event, cardId, user }) => {
+export const EventCard = ({ event, cardId, user, num }) => {
 
     // converts date string into a local date time format, removes the last 21 characters
     const timeConverter = (datetime) => {
@@ -25,6 +25,7 @@ export const EventCard = ({ event, cardId, user }) => {
     const privateVal = event.private;
     const local_rank = event.local_rank;
     const rank = event.rank;
+    const address = event.entities[0] ? event.entities[0].formatted_address.slice(0, -30) : null;
 
     const saveEvent = () => {
         fetch('http://localhost:3000/api/events', {
@@ -46,11 +47,11 @@ export const EventCard = ({ event, cardId, user }) => {
                 start_time: start_time,
                 private: privateVal,
                 rank: rank,
-                local_rank: local_rank
+                local_rank: local_rank,
+                address: address
             }),
         }).then(response => response.json())
             .then(data => {
-                console.log('event saved: ', data);
                 if (data === 'event has been saved') {
                     document.getElementById(`hiddenError${cardId}`).style.display = 'flex';
                 }
@@ -62,12 +63,12 @@ export const EventCard = ({ event, cardId, user }) => {
 
     return (
         <div className="flex justify-center">
-            <div className="rounded-lg shadow-lg bg-white min-w-[23rem]">
+            <div className="rounded-lg shadow-lg bg-white w-[44vh]">
                 {/* <a href="#!">
                     <img className="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
                 </a> */}
                 <div className="p-4">
-                    <h5 className="text-gray-900 text-xl font-semibold mb-2">{event.title}</h5>
+                    <h5 className="text-gray-900 text-xl font-semibold mb-2">{num}. {event.title}</h5>
                     <div className='w-full flex justify-between'>
                         <p className="text-gray-700 text-md">
                             Category
@@ -131,12 +132,18 @@ export const EventCard = ({ event, cardId, user }) => {
                     <div className='flex justify-between mx-4'>
                         {event.description ?
                             <button
-                                className="px-4 py-2 mt-4 rounded-md text-gray-600 bg-gray-200 font-semibold text-sm flex align-center w-max cursor-pointer hover:bg-gray-400 hover:shadow-lg focus:bg-gray-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out
+                                className="px-4 py-2 mt-4 rounded-md text-gray-600 bg-gray-200 font-semibold text-sm flex align-center w-max
+                                cursor-pointer hover:bg-gray-400 hover:shadow-lg focus:bg-gray-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-400 active:shadow-lg transition duration-150 ease-in-out
                                                 "data-bs-toggle="collapse" data-bs-target={`#descriptionCollapse${cardId}`} aria-expanded="false" aria-controls={`descriptionCollapse${cardId}`}>
                                 Extra Info
                             </button>
                             :
-                            <div></div>}
+                            <div className="text-white mr-[92px]">.</div>}
+                        <SearchIcon className="mt-4 p-0.5 rounded-md shadow-sm text-gray-300 bg-gray-200
+                        cursor-pointer hover:bg-gray-300 hover:shadow-lg focus:bg-gray-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-gray-300 active:shadow-lg transition duration-150 ease-in-out"
+                            style={{ color: "green", fontSize: 35 }}
+                            onClick={() => window.open(`https://www.google.com/search?q=${event.title}+${startTime}`, '_blank').focus()}
+                        />
                         {JSON.stringify(user) === JSON.stringify({}) ?
                             <button type="button" className=" cursor-not-allowed opacity-50 mt-4 text-white inline-block px-6 py-2.5 bg-emerald-600 font-medium text-xs leading-tight uppercase rounded shadow-md">
                                 Save Event</button>

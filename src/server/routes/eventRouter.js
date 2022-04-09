@@ -25,7 +25,7 @@ router.post('/',
 router.delete('/',
     eventController.deleteEvent,
     (req, res, next) => {
-        return res.status(200).json(`deleted event ${req.body.eventid} from user ${req.session.user.username}`);
+        return res.status(200).json(`deleted event ${req.body.eventid} from user ${req.body.username}`);
     });
 
 module.exports = router;

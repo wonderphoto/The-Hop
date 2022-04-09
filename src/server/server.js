@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 
 // node modules
 const express = require("express");
@@ -18,21 +18,34 @@ const sessionRouter = require("./routes/sessionRouter.js");
 const PORT = process.env.PORT || 3000;
 const app = express();
 
-const SQL_URI = `postgres://${process.env.POSTGRESQL_USER}:${process.env.POSTGRESQL_PASSWORD}@heffalump.db.elephantsql.com/${process.env.POSTGRESQL_USER}`
-
+const SQL_URI = `postgres://${process.env.POSTGRESQL_USER}:${process.env.POSTGRESQL_PASSWORD}@heffalump.db.elephantsql.com/${process.env.POSTGRESQL_USER}`;
 
 // handle requests for static files
-app.use("/assets", express.static("../../build"));
+app.use(express.static(__dirname + '/build')); 
 
 // json parser
 app.use(express.json());
 
 // credential handling
-app.use(cors({
-  origin: ['http://localhost:8080'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+app.use(
+  cors({
+    allowedHeaders: ['Content-Type','Authorization'],
+    origin: ["http://localhost:3000", "http://localhost:8080"],
+    credentials: true,
+    preflightContinue: true
+  })
+);
+
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version, X-Response-Time, X-PINGOTHER, X-CSRF-Token,Authorization"
+  );
+  return next();
+});
 
 // session & cookie handling
 app.use(cookieParser());
@@ -42,18 +55,20 @@ app.use(
     key: "userID",
     secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
-    resave: false,
+    resave: true,
+    rolling: true,
     cookie: {
       httpOnly: true,
       maxAge: parseInt(process.env.SESSION_MAX_AGE),
+      expires: parseInt(process.env.SESSION_MAX_AGE)
     },
   })
 );
 
 // define route handlers
-app.use('/api/users', userRouter);
-app.use('/api/events', eventRouter);
-app.use('/auth', sessionRouter);
+app.use("/api/users", userRouter);
+app.use("/api/events", eventRouter);
+app.use("/auth", sessionRouter);
 
 // home
 app.get("/", (req, res) => {
@@ -65,7 +80,7 @@ app.use((err, req, res, next) => {
   const defaultErr = {
     log: "Global error handler caught unknown middleware error",
     status: 400,
-    message: { err: "An error occurred" },
+    message: { err: `An error occurred ${err}` },
   };
 
   // sets to default err obj unless an err param is defined

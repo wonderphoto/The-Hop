@@ -1,8 +1,9 @@
 import React from "react";
 import regeneratorRuntime from "regenerator-runtime";
 import AutoComplete from "react-google-autocomplete";
+// import { Autocomplete } from '@react-google-maps/api';
 
-export const SearchBox = ({ apiEvents, setApiEvents }) => {
+export const SearchBox = ({ apiEvents, setApiEvents, setMapBase, mapRef, setCircleRadius }) => {
   const apiKey = process.env.PREDICTHQ_API_KEY;
   // today's date for filling in default value of date input boxes in options
   let todayDate = new Date().toISOString().slice(0, 10);
@@ -17,6 +18,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     return arr.length ? arr.join(', ') : '';
   }
 
+  let latitude, longitude;
   const onFind = async () => {
     // TODO check if location is entered, if not return a modal error
     let location = document.getElementById("locationForm").value;
@@ -33,11 +35,14 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     let geocodedAddress = await fetch(geocodingUrl).then(res => res.json());
 
     // pull latitude and longitude from results of geocoding api
-    let latitude = geocodedAddress.results[0].geometry.location.lat;
-    let longitude = geocodedAddress.results[0].geometry.location.lng;
+    latitude = geocodedAddress.results[0].geometry.location.lat;
+    longitude = geocodedAddress.results[0].geometry.location.lng;
+    // console.log(`latitude is ${latitude}, longitude is ${longitude}`);
+    setMapBase({ lat: latitude, lng: longitude });
 
     // by default radius is set to 10 miles
     let radius = document.getElementById("radiusForm").value;
+    setCircleRadius(radius);
 
     // by default the start and end date are today's date
     let startDate = document.getElementById("startDateForm").value;
@@ -49,6 +54,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
       "active.gte": startDate,
       "active.lte": endDate,
       within: radius + "mi@" + latitude + "," + longitude,
+      limit: 25,
     };
     // add category key if categorie(s) is checked by user
     // const categories = getCheckedCategories();
@@ -73,7 +79,15 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
     const events = await fetch(url, eventAPIParams)
       .then((response) => response.json())
       .then((data) => {
-        console.log('returned data is:', data.results);
+        // console.log('returned data is:', data.results);
+        data.results.forEach((event) => {
+          if (event.location) {
+            event.location[0] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
+            event.location[1] += Math.pow(10, -4) * (Math.random() * (1 - (-1)) - 1)
+          }
+        })
+        console.log('returned data from predictHQ api is:', data.results);
+
         setApiEvents(data.results);
       })
       .catch((err) => {
@@ -86,7 +100,7 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
   return (
     <div
       id="SearchBox"
-      className="flex bg-slate-50 flex-col border-2 border-gray-300 justify-center items-center w-full "
+      className="flex bg-slate-50 flex-col justify-center items-center w-full p-5 pl-2 pb-2"
     >
       <div className="flex mt-4 mb-3">
         <div className="text-md font-semibold text-gray-500 mt-2 mr-1">Location: </div>
@@ -107,13 +121,16 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
          m-0
          focus:text-gray-700 focus:bg-white focus:border-blue-500 focus:outline-none
          "
-          apiKey={process.env.GOOGLE_MAPS}
+          // apiKey={process.env.GOOGLE_MAPS}
           options={{
             types: ["geocode"],
             componentRestrictions: { country: "us" },
           }}
-          onPlaceSelected={(place) => console.log('returned autocompleted place is: ', place)}
+          onPlaceSelected={(place) => {
+            console.log('returned autocompleted place is: ', place);
+          }}
         />
+
       </div>
       <div className="flex space-x-2 mb-3">
         <div>
@@ -138,13 +155,12 @@ export const SearchBox = ({ apiEvents, setApiEvents }) => {
                 Search Options</h3>
               <button type="button" className="btn-close box-content w-4 h-4 p-2 -my-5 -mr-2 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div className="offcanvas-body flex-grow p-4 text-lg overflow-y-auto">
+            <div className="offcanvas-body flex-grow p-0 pb-0 text-lg overflow-y-auto">
               <div>
-                Please select additional options below:
               </div>
               <div className="flex mt-2 justify-center">
                 <div>
-                  <div className="flex-row mb-3">
+                  <div className="flex-row">
                     <div className="text-md text-gray-500 mt-1">Start date</div>
                     <input
                       type="date"
@@ -219,8 +235,8 @@ m-0
 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
 "
                       id="radiusForm"
-                      defaultValue="10"
-                      placeholder="10"
+                      defaultValue="5"
+                      placeholder="5"
                       onChange={(e) => { }}
                     />
                   </div>
@@ -261,6 +277,7 @@ focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                       type="checkbox"
                       value="conferences"
                       id="flexCheckConferences"
+                      defaultChecked={true}
                     />
                     <label
                       className="form-check-label inline-block text-gray-800"
