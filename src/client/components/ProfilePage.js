@@ -41,10 +41,10 @@ export const ProfilePage = ({ user, setUser }) => {
       <Header user={user} setUser={setUser} />
       <div className="font-serif">
         <div className="inline-flex flex-col h-[63rem] w-1/2 overflow-y-auto">
-          <SavedEventsContainer user={user} />
+          <SavedEventsContainer user={user} userEvents={userEvents} />
         </div>
         <div className="inline-flex flex-col h-[40rem] w-1/2 overflow-y-auto">
-          <ScheduleCard />
+          <ScheduleCard user={user} userEvents={userEvents} />
         </div>
       </div>
       <Footer />

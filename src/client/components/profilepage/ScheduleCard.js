@@ -37,7 +37,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
             <div className="max-w-sm w-full shadow-lg">
                 <div className="md:p-8 p-5 dark:bg-gray-800 bg-white rounded-t">
                     <div className="px-4 flex items-center justify-between">
-                        <span tabindex="0" className="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800">{months[month]} {year}</span>
+                        <span tabIndex="0" className="focus:outline-none  text-base font-bold dark:text-gray-100 text-gray-800">{months[month]} {year}</span>
                         <div className="flex items-center">
                             <button aria-label="calendar backward" className="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100"
                                 onClick={() => {
@@ -48,7 +48,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                         setMonth(month - 1);
                                     }
                                 }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="15 6 9 12 15 18" />
                                 </svg>
@@ -62,7 +62,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                         setMonth(month + 1);
                                     }
                                 }}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                     <polyline points="9 6 15 12 9 18" />
                                 </svg>
@@ -125,7 +125,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td className="pt-6">
                                         {eventsThisMonth.includes(1) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     1</a>
                                             </div>
                                         </div> :
@@ -137,7 +137,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td className="pt-6">
                                         {eventsThisMonth.includes(2) in eventsThisMonth ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     2</a>
                                             </div>
                                         </div> :
@@ -149,7 +149,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td className="pt-6">
                                         {eventsThisMonth.includes(3) in eventsThisMonth ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     3</a>
                                             </div>
                                         </div> :
@@ -161,7 +161,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td className="pt-6">
                                         {eventsThisMonth.includes(4) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     4</a>
                                             </div>
                                         </div> :
@@ -175,7 +175,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(5) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     5</a>
                                             </div>
                                         </div> :
@@ -187,7 +187,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(6) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     6</a>
                                             </div>
                                         </div> :
@@ -199,7 +199,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(7) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     7</a>
                                             </div>
                                         </div> :
@@ -211,7 +211,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(8) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">8</a>
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">8</a>
                                             </div>
                                         </div> :
                                             <div className="px-2 py-2 cursor-pointer flex w-full justify-center">
@@ -221,7 +221,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(9) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     9</a>
                                             </div>
                                         </div> :
@@ -233,7 +233,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(10) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     10</a>
                                             </div>
                                         </div> :
@@ -245,7 +245,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(11) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     11</a>
                                             </div>
                                         </div> :
@@ -259,7 +259,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(12) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     12</a>
                                             </div>
                                         </div> :
@@ -271,7 +271,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(13) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     13</a>
                                             </div>
                                         </div> :
@@ -288,7 +288,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(14) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     14</a>
                                             </div>
                                         </div> :
@@ -300,7 +300,7 @@ export const ScheduleCard = ({ user, userEvents }) => {
                                     <td>
                                         {eventsThisMonth.includes(15) ? <div className="w-full h-full">
                                             <div className="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link" tabindex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
+                                                <a role="link" tabIndex="0" className="focus:outline-none  focus:ring-2 focus:ring-offset-2 focus:ring-emerald-700 focus:bg-emerald-600 hover:bg-emerald-600 text-base w-8 h-8 flex items-center justify-center font-medium text-white bg-emerald-500 rounded-full">
                                                     15</a>
                                             </div>
                                         </div> :
@@ -397,16 +397,16 @@ export const ScheduleCard = ({ user, userEvents }) => {
                     <div className="px-4">
                         <div clasName="border-b pb-4 border-gray-400 border-dashed">
                             <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">9:00 AM</p>
-                            <a tabindex="0" className="focus:outline-none text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 mt-2">Zoom call with design team</a>
+                            <a tabIndex="0" className="focus:outline-none text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 mt-2">Zoom call with design team</a>
                             <p className="text-sm pt-2 leading-4 text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
                         </div>
                         <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
                             <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">10:00 AM</p>
-                            <a tabindex="0" className="focus:outline-none text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 mt-2">Orientation session with new hires</a>
+                            <a tabIndex="0" className="focus:outline-none text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 mt-2">Orientation session with new hires</a>
                         </div>
                         <div className="border-b pb-4 border-gray-400 border-dashed pt-5">
                             <p className="text-xs font-light leading-3 text-gray-500 dark:text-gray-300">9:00 AM</p>
-                            <a tabindex="0" className="focus:outline-none text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 mt-2">Zoom call with design team</a>
+                            <a tabIndex="0" className="focus:outline-none text-lg font-medium leading-5 text-gray-800 dark:text-gray-100 mt-2">Zoom call with design team</a>
                             <p className="text-sm pt-2 leading-4 text-gray-600 dark:text-gray-300">Discussion on UX sprint and Wireframe review</p>
                         </div>
                     </div>
