@@ -53,7 +53,6 @@ export const Header = ({ user, setUser }) => {
   // }
 
   return (
-    // <nav className="bg-green-500 border-gray-200 h-20">
     <nav className="bg-gradient-to-r from-green-400 to-green-300 h-20 drop-shadow-xl">
       <div className="flex flex-wrap justify-between overflow-visible">
         <div className="overflow-visible static">
@@ -62,9 +61,8 @@ export const Header = ({ user, setUser }) => {
           </a>
         </div>
 
-        {
-        // JSON.stringify(user) !== JSON.stringify({}) 
-        true ? (
+        {JSON.stringify(user) !== JSON.stringify({}) ?
+        //true ? (
           // drop down menu
           <div className="flex justify-center z-10">
             <div>
@@ -222,7 +220,7 @@ export const Header = ({ user, setUser }) => {
               </div>
             </div>
           </div>
-        ) : (
+        : (
           <button
             type="button"
             className="inline-block px-7 py-2.5 mt-5 mr-5 bg-yellow-500 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-yellow-600 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-700 active:shadow-lg transition duration-150 ease-in-out"
