@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { HomePage } from "./components/HomePage";
 import { LoginPage } from "./components/LoginPage";
 import { SignupPage } from "./components/SignupPage";
@@ -56,7 +56,7 @@ function App() {
       setLoggingOut(false);
       console.log('logging out')
     }
-  }, [document.location.href]);
+  }, []);
 
   return (
     <BrowserRouter>
