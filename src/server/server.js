@@ -58,7 +58,7 @@ app.use(
     resave: true,
     rolling: true,
     cookie: {
-      httpOnly: true,
+      httpOnly: false,
       maxAge: parseInt(process.env.SESSION_MAX_AGE),
       expires: parseInt(process.env.SESSION_MAX_AGE)
     },

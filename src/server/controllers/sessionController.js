@@ -54,14 +54,11 @@ sessionController.logout = async (req, res, next) => {
   if (!req.session.user.username)
     return next({ log: "Not logged in", message: "Not logged in" });
 
-  const logoutHelper = () => {
-    console.log("user session is :", req.session.user.username);
-    const username = req.session.user.username;
+  const logoutHelper = () => {    
+    // method 2
+    res.clearCookie("userID", {domain: 'localhost', path: '/'});
     
-    res.clearCookie("userID", { path: "/" });
-    res.clearCookie("connect.sid", { path: "/" });
-    req.session.authenticated = false;
-    
+    // method 3
     return req.session.destroy((err) => {
       if(err){
         return next({
@@ -69,14 +66,13 @@ sessionController.logout = async (req, res, next) => {
           message: {err: "Error destroying session"}
         })
       }
-      res.clearCookie("userID", { path: "/" });
-      res.clearCookie("connect.sid", { path: "/" });
-      console.log(username + " logged out.");
+      console.log('User logged out, session destroyed.')
       return next();
     });
   };
 
   await logoutHelper();
+  return next();
 };
 
 module.exports = sessionController;

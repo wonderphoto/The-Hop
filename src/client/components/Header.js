@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-export const Header = ({ user, setUser, setLoggingOut }) => {
+export const Header = ({ user, logout }) => {
   const location = useLocation();
   let navigate = useNavigate();
 
@@ -18,9 +18,8 @@ export const Header = ({ user, setUser, setLoggingOut }) => {
     navigate("/");
   };
 
-  const logout = () => {
-    setLoggingOut(true);
-    setUser({});
+  const logoutFunc = async () => {
+    await logout();
     navHome();
   };
 
@@ -215,7 +214,7 @@ export const Header = ({ user, setUser, setLoggingOut }) => {
               hover:bg-gray-100
             "
                       href="#"
-                      onClick={() => logout()}
+                      onClick={logoutFunc}
                     >
                       Logout
                     </a>
