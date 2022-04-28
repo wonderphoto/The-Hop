@@ -5,7 +5,7 @@ import { ScheduleCard } from './profilepage/ScheduleCard'
 import { Footer } from './Footer'
 
 
-export const ProfilePage = ({ user, setUser, setLoggingOut }) => {
+export const ProfilePage = ({ user, logout }) => {
   const [userEvents, setUserEvents] = useState([]);
 
   let backendUrl = new URL("http://localhost:3000/api/events");
@@ -38,7 +38,7 @@ export const ProfilePage = ({ user, setUser, setLoggingOut }) => {
 
   return (
     <div className='flex-col'>
-      <Header user={user} setUser={setUser} setLoggingOut={setLoggingOut} />
+      <Header user={user} logout={logout} />
       <div className="flex font-serif bg-gray-100 shadow-lg">
         <div className="h-[86vh] w-1/2 overflow-y-auto">
           <SavedEventsContainer user={user} userEvents={userEvents} setUserEvents={setUserEvents} />

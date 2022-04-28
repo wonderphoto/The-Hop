@@ -8,7 +8,7 @@ import { useJsApiLoader } from '@react-google-maps/api';
 import { useLocation } from "react-router-dom";
 
 const placeLib = ['places'];
-export const HomePage = ({ user, setUser, setLoggingOut }) => {
+export const HomePage = ({ user, logout }) => {
   const [apiEvents, setApiEvents] = useState([]);
   const [mapBase, setMapBase] = useState({});
   const [circleRadius, setCircleRadius] = useState(0);
@@ -32,7 +32,7 @@ export const HomePage = ({ user, setUser, setLoggingOut }) => {
   if (!isLoaded) return <div>Waiting for Google API to load ...</div>;
   return (
     <div className="flex-col">
-      <Header user={user} setUser={setUser} setLoggingOut={setLoggingOut}/>
+      <Header user={user} logout={logout}/>
       <div className="flex relative">
         <Sidebar apiEvents={apiEvents} setApiEvents={setApiEvents} user={user} setMapBase={setMapBase} mapRef={mapRef} setCircleRadius={setCircleRadius} />
         <Map apiEvents={apiEvents} mapBase={mapBase} mapRef={mapRef} circleRadius={circleRadius} />
