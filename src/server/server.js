@@ -2,12 +2,12 @@ require("dotenv").config();
 
 // node modules
 const express = require("express");
-const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const MongoStore = require('connect-mongo');
 
 // routers
 const userRouter = require("./routes/userRouter.js");
@@ -58,10 +58,14 @@ app.use(
     resave: true,
     rolling: true,
     cookie: {
-      httpOnly: false,
+      httpOnly: true,
       maxAge: parseInt(process.env.SESSION_MAX_AGE),
-      expires: parseInt(process.env.SESSION_MAX_AGE)
     },
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGO,
+      dbName: 'the-hop',
+      collectionName: 'sessions',
+    })
   })
 );
 
