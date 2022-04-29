@@ -12,32 +12,58 @@ function App() {
   const login = async () => {
     const username = document.getElementById("usernameLoginForm").value;
     const password = document.getElementById("passwordLoginForm").value;
-    await fetch('http://localhost:3000/auth/login', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        credentials: "include",
-        body: JSON.stringify({ "username": username, "password": password }),
+
+    return await fetch('http://localhost:3000/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: "include",
+      body: JSON.stringify({ "username": username, "password": password }),
     })
-        .then(response => response.json())
-        .then(user => {
-            if (user.username === username) {
-                setLoginStatus(true);
-                window.location.href = '/';
-            }
-            else {
-                alert('Wrong password!');
-            }
-        })
-        .catch(err => {
-            console.log(err);
-        })
-}
+      .then(response => response.json())
+      .then(user => {
+        if (user.username === username) {
+          setLoginStatus(true);
+          window.location.href = '/';
+        }
+        else {
+          alert('Wrong password!');
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+  const signup = async () => {
+    let username = document.getElementById("usernameCreateUserForm").value;
+    let password = document.getElementById("passwordCreateUserForm").value;
+    let email = document.getElementById("emailCreateUserForm").value;
+
+    return await fetch('http://localhost:3000/auth/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: "include",
+      body: JSON.stringify({ "username": username, "password": password, "email": email }),
+    }).then((response) => {
+      if (response.status === 200) {
+        setLoginStatus(true);
+        window.location.href = '/';
+      } else {
+        alert("Error during sign up process")
+      }
+    })
+      .catch(err => {
+        console.log(err);
+      })
+  }
 
   // passed down to header logout button's onClick thru props
   const logout = async () => {
-    await fetch("http://localhost:3000/auth/logout", {
+    return await fetch("http://localhost:3000/auth/logout", {
       method: "DELETE",
       // headers: {
       //   "Content-Type": "application/json",
@@ -79,8 +105,8 @@ function App() {
           path="/"
           element={<HomePage user={user} logout={logout} />}
         ></Route>
-        <Route path="/login" element={<LoginPage login={login}/>}></Route>
-        <Route path="/signup" element={<SignupPage />}></Route>
+        <Route path="/login" element={<LoginPage login={login} />}></Route>
+        <Route path="/signup" element={<SignupPage signup={signup} />}></Route>
         <Route
           path="/profile"
           element={<ProfilePage user={user} logout={logout} />}
