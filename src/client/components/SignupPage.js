@@ -2,34 +2,9 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
-export const SignupPage = () => {
+export const SignupPage = ({ signup }) => {
 
     let navigate = useNavigate();
-    const createUser = () => {
-        let username = document.getElementById("usernameCreateUserForm").value;
-        let password = document.getElementById("passwordCreateUserForm").value;
-        let email = document.getElementById("emailCreateUserForm").value;
-        fetch('http://localhost:3000/auth/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: "include",
-            body: JSON.stringify({ "username": username, "password": password, "email": email }),
-        }).then(async (response) => {
-            if (response.status === 200) {
-                // const user = await response.json();
-                // setUser(user);
-                navigate("/");
-                window.location.reload(false);
-            } else {
-                alert("Error during sign up process")
-            }
-        })
-            .catch(err => {
-                console.log(err);
-            })
-    }
 
     return (
         <section className="h-screen">
@@ -74,7 +49,7 @@ export const SignupPage = () => {
                                 <button
                                     type="button"
                                     className="inline-block mb-4 px-7 py-3 bg-green-600 text-white font-medium text-md leading-snug uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                                    onClick={() => createUser()}
+                                    onClick={signup}
                                 >
                                     Create Account
                                 </button>
