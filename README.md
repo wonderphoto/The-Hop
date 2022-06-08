@@ -3,7 +3,7 @@
 ## Plan something to do right now!
 
 In a hectic society with so much responsibility, spontaneity is all but lost.
-If you desire the ability to find events happening NOW, get TheHop. 
+If you desire the ability to find events happening NOW, get TheHop! 
 
   - Search various events at your current or another selected location 
   - Filter genres & tastes
